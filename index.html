@@ -284,6 +284,9 @@ input,textarea{ cursor:text; }
 .crew-label{ font-family:var(--mono); font-size:10px; letter-spacing:0.16em; color:var(--steel); text-transform:uppercase; margin-bottom:2px; }
 .profiles{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(18px,3vw,36px); }
 .profiles .profile:first-child{ padding-right:clamp(18px,3vw,36px); border-right:1px solid var(--line); }
+.profile-photo{ position:relative; aspect-ratio:4/5; border-radius:6px; overflow:hidden; margin-bottom:16px; background:var(--ink-2); border:1px solid var(--line); }
+.profile-photo::after{ content:"PORTRAIT"; position:absolute; inset:0; display:grid; place-items:center; font-family:var(--mono); font-size:9px; letter-spacing:0.2em; color:var(--steel); }
+.profile-photo img{ position:relative; z-index:1; width:100%; height:100%; object-fit:cover; display:block; }
 .profile h4{ font-size:clamp(19px,2.2vw,24px); font-weight:800; display:flex; align-items:baseline; gap:9px; letter-spacing:-0.01em; }
 .profile h4 small{ font-family:var(--mono); font-size:11px; font-weight:400; color:var(--floodlight); letter-spacing:0.06em; }
 .profile p{ margin-top:9px; font-size:14px; color:var(--paper); opacity:.85; }
@@ -664,8 +667,14 @@ input,textarea{ cursor:text; }
         <div class="crew-label">작가 · TEAM</div>
         <!-- TODO(임시): 실제 한줄소개·프로필로 교체 -->
         <div class="profiles">
-          <div class="profile"><h4>양승환 <small>작가</small></h4><p>사진 · 영상 · 드론 촬영</p></div>
-          <div class="profile"><h4>최준영 <small>작가</small></h4><p>사진 · 영상 · 드론 촬영</p></div>
+          <div class="profile">
+            <div class="profile-photo"><img src="img/seunghwan.jpg" alt="양승환 작가" loading="lazy" onerror="this.style.display='none'"></div>
+            <h4>양승환 <small>작가</small></h4><p>사진 · 영상 · 드론 촬영</p>
+          </div>
+          <div class="profile">
+            <div class="profile-photo"><img src="img/junyoung.jpg" alt="최준영 작가" loading="lazy" onerror="this.style.display='none'"></div>
+            <h4>최준영 <small>작가</small></h4><p>사진 · 영상 · 드론 촬영</p>
+          </div>
         </div>
       </div>
     </div>
@@ -753,10 +762,14 @@ input,textarea{ cursor:text; }
   </div>
 </section>
 
-<!-- ===================== CONTACT ===================== -->
-<section class="section" id="contact" style="background:var(--ink-1);">
-  <div class="wrap">
-    <div class="section-head reveal">
+<!-- ===================== CONTACT 랜딩 페이지 (#contact, 풀스크린 오버레이) ===================== -->
+<div class="cat-page contact-page" id="contactPage" role="dialog" aria-modal="true" aria-label="촬영 문의">
+  <div class="cat-top">
+    <button class="cat-close" id="contactClose"><span class="bk">←</span> 돌아가기</button>
+    <span class="cat-brand">GRIP MATE</span>
+  </div>
+  <div class="wrap" style="padding-top:clamp(36px,6vw,72px); padding-bottom:clamp(60px,9vw,110px);">
+    <div class="section-head">
       <div class="head-left">
         <div class="sec-obj obj-flash" aria-hidden="true"><div class="o"></div></div>
         <div>
@@ -769,7 +782,7 @@ input,textarea{ cursor:text; }
       <!-- 메일 제출: 기본은 두 대표 메일(dol9111@gmail.com · youthofjune27@naver.com)을
            동시 수신자로 하는 mailto. 메일 창 없이 자동 발송하려면 하단 스크립트의
            GM_ENDPOINT 에 Formspree/EmailJS 엔드포인트만 넣으면 됨(폼 구조 변경 불필요). -->
-      <form class="form reveal" id="contactForm">
+      <form class="form" id="contactForm">
         <div class="field"><label for="f-name">이름 / 팀</label><input id="f-name" name="name" type="text" placeholder="홍길동 / ○○ 클럽" required /></div>
         <div class="field"><label for="f-phone">연락처 (전화)</label><input id="f-phone" name="phone" type="tel" placeholder="010-0000-0000" required /></div>
         <div class="field"><label for="f-email">이메일</label><input id="f-email" name="email" type="email" placeholder="email@example.com" required /></div>
@@ -786,7 +799,7 @@ input,textarea{ cursor:text; }
         <button type="submit" class="btn btn-primary" data-magnetic>문의 보내기 <span class="arr">→</span></button>
         <p style="font-family:var(--mono); font-size:10.5px; color:var(--steel); letter-spacing:0.04em;">* 버튼을 누르면 작성 내용이 담긴 메일 창이 열립니다. 수집 항목 이름·전화·이메일 / 목적 문의 응대 / 보유 응대 완료 후 파기.</p>
       </form>
-      <aside class="contact-side reveal">
+      <aside class="contact-side">
         <h3>연락처</h3>
         <p class="desc">수도권을 거점으로 전국 출장 촬영합니다(원거리 출장비 별도 협의). 문의는 보통 하루 안에 답신드립니다.</p>
         <div class="reach">
@@ -805,7 +818,7 @@ input,textarea{ cursor:text; }
       </aside>
     </div>
   </div>
-</section>
+</div>
 </main>
 
 <!-- ===================== FOOTER ===================== -->
@@ -1112,7 +1125,7 @@ const navMap = {};
 navLinks.querySelectorAll('a').forEach(a => navMap[a.getAttribute('href').slice(1)] = a);
 if('IntersectionObserver' in window){
   const so = new IntersectionObserver(es => es.forEach(en => { if(en.isIntersecting){ Object.values(navMap).forEach(a => a.classList.remove('active')); const a = navMap[en.target.id]; if(a) a.classList.add('active'); } }), { rootMargin:'-45% 0px -50% 0px' });
-  ['work','about','services','contact'].forEach(id => { const el = document.getElementById(id); if(el) so.observe(el); });
+  ['work','about','services'].forEach(id => { const el = document.getElementById(id); if(el) so.observe(el); });
 }
 
 if('IntersectionObserver' in window && !reduceMotion){
@@ -1186,18 +1199,38 @@ function openCatPage(key){
   const _dd = document.getElementById('navDD'); if(_dd) _dd.classList.remove('open');
   const cc = document.getElementById('catClose'); if(cc) cc.focus();
 }
-function closeCatPage(){ catPage.classList.remove('open'); document.body.style.overflow=''; if(location.hash.indexOf('#portfolio/')===0) history.replaceState(null,'',location.pathname+location.search); if(catLastFocus && catLastFocus.focus) catLastFocus.focus(); }
+function closeCatPage(){ catPage.classList.remove('open'); if(!contactPage.classList.contains('open')) document.body.style.overflow=''; if(location.hash.indexOf('#portfolio/')===0) history.replaceState(null,'',location.pathname+location.search); if(catLastFocus && catLastFocus.focus) catLastFocus.focus(); }
+
+// CONTACT 랜딩 오버레이 (#contact) — 모든 #contact 링크가 이 페이지를 연다
+const contactPage = document.getElementById('contactPage');
+function openContact(){
+  catLastFocus = document.activeElement;
+  catPage.classList.remove('open');
+  contactPage.classList.add('open'); document.body.style.overflow='hidden'; contactPage.scrollTop=0;
+  navLinks.classList.remove('open'); menuToggle.classList.remove('open');
+  const _dd = document.getElementById('navDD'); if(_dd) _dd.classList.remove('open');
+  const cc = document.getElementById('contactClose'); if(cc) cc.focus();
+}
+function closeContact(){ contactPage.classList.remove('open'); if(!catPage.classList.contains('open')) document.body.style.overflow=''; if(location.hash==='#contact') history.replaceState(null,'',location.pathname+location.search); if(catLastFocus && catLastFocus.focus) catLastFocus.focus(); }
+
 document.getElementById('catClose').addEventListener('click', closeCatPage);
-document.getElementById('catCtaBtn').addEventListener('click', () => { closeCatPage(); });
-document.addEventListener('keydown', e => { if(e.key==='Escape' && catPage.classList.contains('open')) closeCatPage(); });
-function routeCat(){ const m = location.hash.match(/^#portfolio\/(\w+)/); if(m) openCatPage(CATPAGES[m[1]] ? m[1] : 'all'); else if(catPage.classList.contains('open')) closeCatPage(); }
-window.addEventListener('hashchange', routeCat);
-routeCat();
+document.getElementById('contactClose').addEventListener('click', closeContact);
+document.addEventListener('keydown', e => { if(e.key==='Escape'){ if(contactPage.classList.contains('open')) closeContact(); else if(catPage.classList.contains('open')) closeCatPage(); } });
+
+function route(){
+  const h = location.hash;
+  const m = h.match(/^#portfolio\/(\w+)/);
+  if(m){ contactPage.classList.remove('open'); openCatPage(CATPAGES[m[1]] ? m[1] : 'all'); }
+  else if(h === '#contact'){ openContact(); }
+  else { if(catPage.classList.contains('open')) closeCatPage(); if(contactPage.classList.contains('open')) closeContact(); }
+}
+window.addEventListener('hashchange', route);
+route();
 
 // 모달 포커스 트랩 (라이트박스 · 카테고리 오버레이) — Tab이 뒤로 새지 않게
 document.addEventListener('keydown', e => {
   if(e.key !== 'Tab') return;
-  const modal = lb.classList.contains('open') ? lb : (catPage.classList.contains('open') ? catPage : null);
+  const modal = lb.classList.contains('open') ? lb : (contactPage.classList.contains('open') ? contactPage : (catPage.classList.contains('open') ? catPage : null));
   if(!modal) return;
   const f = [...modal.querySelectorAll('a[href],button,input,select,textarea,[tabindex]:not([tabindex="-1"])')].filter(x => x.offsetWidth || x.offsetHeight || x === document.activeElement);
   if(!f.length) return;
