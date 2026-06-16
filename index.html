@@ -283,17 +283,20 @@ input,textarea{ cursor:text; }
 .mission{ font-family:var(--display-ko); font-size:clamp(22px,3vw,38px); line-height:1.35; font-weight:600; letter-spacing:-0.035em; max-width:20ch; }
 .mission .dim{ color:var(--steel); }
 .mission-label{ font-family:var(--ui); font-weight:600; font-size:12px; letter-spacing:0.1em; color:var(--floodlight); text-transform:uppercase; margin-bottom:18px; }
-.about-grid{ display:grid; grid-template-columns:1.1fr 1fr; gap:clamp(36px,6vw,80px); align-items:center; margin-top:8px; }
+.about-grid{ display:grid; grid-template-columns:1fr 1.5fr 1fr; gap:clamp(24px,4vw,56px); align-items:center; margin-top:8px; }
 .about-note{ margin-top:22px; color:var(--steel); max-width:42ch; }
 .crew{ display:grid; gap:16px; }
 .crew-label{ font-family:var(--mono); font-size:10px; letter-spacing:0.16em; color:var(--steel); text-transform:uppercase; margin-bottom:2px; }
-.profiles{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(16px,2.4vw,30px); }
-.profile-photo{ position:relative; aspect-ratio:4/5; border-radius:8px; overflow:hidden; background:var(--ink-2); border:1px solid var(--line); }
+.about-mid{ text-align:center; }
+.about-mid .mission{ max-width:24ch; margin-left:auto; margin-right:auto; }
+.about-mid .about-note{ margin-left:auto; margin-right:auto; }
+.profile{ display:flex; flex-direction:column; }
+.profile-photo{ aspect-ratio:4/5; border-radius:8px; overflow:hidden; background:var(--ink-2); border:1px solid var(--line); }
 .profile-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
-.profile-cap{ position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:7px; padding:18px; background:linear-gradient(180deg, rgba(13,13,15,.3), rgba(13,13,15,.58)); }
-.profile-cap h4{ font-size:clamp(20px,2.4vw,27px); font-weight:800; letter-spacing:-0.01em; display:flex; align-items:baseline; gap:8px; text-shadow:0 2px 14px rgba(0,0,0,.55); }
+.profile-cap{ margin-top:14px; text-align:center; }
+.profile-cap h4{ font-size:clamp(19px,2vw,24px); font-weight:800; letter-spacing:-0.01em; display:flex; align-items:baseline; justify-content:center; gap:8px; }
 .profile-cap h4 small{ font-family:var(--mono); font-size:11px; font-weight:400; color:var(--floodlight); letter-spacing:0.06em; }
-.profile-cap p{ font-size:13.5px; color:var(--paper); opacity:.92; text-shadow:0 1px 10px rgba(0,0,0,.6); }
+.profile-cap p{ margin-top:7px; font-size:13.5px; color:var(--steel); }
 .stats{ margin-top:clamp(40px,6vw,68px); display:grid; grid-template-columns:repeat(4,1fr); gap:18px; border-top:1px solid var(--line); padding-top:34px; }
 .stat b{ display:block; font-family:var(--display); font-weight:600; font-size:clamp(30px,4vw,48px); letter-spacing:0.01em; line-height:1; }
 .stat span{ font-family:var(--mono); font-size:11px; color:var(--steel); letter-spacing:0.06em; margin-top:8px; display:block; }
@@ -535,7 +538,7 @@ input,textarea{ cursor:text; }
   .footer-row{ flex-direction:column; } .footer .meta{ text-align:left; }
   .stats{ grid-template-columns:repeat(2,1fr); }
   .rec-hud.h-tr{ display:none; }
-  .profile-cap{ padding:10px; gap:4px; } .profile-cap h4{ font-size:17px; } .profile-cap p{ font-size:11px; }
+  .about-grid .profile{ max-width:340px; margin-inline:auto; }
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
@@ -661,28 +664,18 @@ input,textarea{ cursor:text; }
       </div>
     </div>
     <div class="about-grid">
-      <div class="reveal">
+      <div class="profile reveal">
+        <div class="profile-photo"><img src="img/seunghwan.jpg" alt="양승환 작가" loading="lazy"></div>
+        <div class="profile-cap"><h4>양승환 <small>작가</small></h4><p>사진 · 영상 · 드론 촬영</p></div>
+      </div>
+      <div class="about-mid reveal">
         <div class="mission-label">Mission</div>
         <p class="mission">현장의 속도와 긴장을, <span class="dim">정확한 컷과 편집으로 완성합니다.</span></p>
         <p class="about-note">기획부터 촬영, 편집, 색보정까지 한 팀에서 진행합니다. 외주 없이 일관된 톤을 유지하며, 현장 상황에 맞춰 빠르게 대응합니다.</p>
       </div>
-      <div class="crew reveal">
-        <div class="crew-label">작가 · TEAM</div>
-        <!-- TODO(임시): 실제 한줄소개·프로필로 교체 -->
-        <div class="profiles">
-          <div class="profile">
-            <div class="profile-photo">
-              <img src="img/seunghwan.jpg" alt="양승환 작가" loading="lazy">
-              <div class="profile-cap"><h4>양승환 <small>작가</small></h4><p>사진 · 영상 · 드론 촬영</p></div>
-            </div>
-          </div>
-          <div class="profile">
-            <div class="profile-photo">
-              <img src="img/junyoung.jpg" alt="최준영 작가" loading="lazy">
-              <div class="profile-cap"><h4>최준영 <small>작가</small></h4><p>사진 · 영상 · 드론 촬영</p></div>
-            </div>
-          </div>
-        </div>
+      <div class="profile reveal">
+        <div class="profile-photo"><img src="img/junyoung.jpg" alt="최준영 작가" loading="lazy"></div>
+        <div class="profile-cap"><h4>최준영 <small>작가</small></h4><p>사진 · 영상 · 드론 촬영</p></div>
       </div>
     </div>
     <div class="stats reveal" id="stats"></div>
