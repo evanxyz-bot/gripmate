@@ -149,7 +149,7 @@ body::after{ content:""; position:fixed; inset:0; z-index:9999; pointer-events:n
 .hero .wrap{ position:relative; z-index:3; width:100%; }
 @media (min-width:1080px){ .hero .wrap{ padding-right:clamp(0px,20vw,320px); } } /* 헤드라인이 우측 AF/MOTION 영역과 안 겹치게 */
 .hero-eyebrow{ margin-bottom:26px; }
-.hero h1{ font-family:var(--display-ko); font-size:clamp(40px,8.4vw,104px); line-height:0.94; font-weight:800; letter-spacing:-0.05em; max-width:15ch; }
+.hero h1{ font-family:var(--display); font-size:clamp(44px,9vw,116px); line-height:0.92; font-weight:600; letter-spacing:-0.02em; max-width:14ch; }
 .hero h1 .hl{ color:var(--floodlight); }
 .hero .sub{ margin-top:24px; max-width:48ch; color:var(--steel); font-size:clamp(15px,1.7vw,19px); line-height:1.7; }
 .hero .cta-row{ margin-top:38px; display:flex; gap:14px; flex-wrap:wrap; }
@@ -282,14 +282,11 @@ input,textarea{ cursor:text; }
 .about-note{ margin-top:22px; color:var(--steel); max-width:42ch; }
 .crew{ display:grid; gap:16px; }
 .crew-label{ font-family:var(--mono); font-size:10px; letter-spacing:0.16em; color:var(--steel); text-transform:uppercase; margin-bottom:2px; }
-.crew-card{ display:flex; gap:18px; align-items:center; padding:18px; border:1px solid var(--line); border-radius:6px; background:var(--ink-1); transition:.3s; }
-.crew-card:hover{ border-color:var(--steel); }
-.crew-photo{ width:84px; height:104px; flex:none; border-radius:4px; position:relative; overflow:hidden; background:linear-gradient(160deg,#26272c,#0e0e10); border:1px solid var(--line); }
-.crew-photo::after{ content:"PORTRAIT"; position:absolute; inset:0; display:grid; place-items:center; font-family:var(--mono); font-size:8px; letter-spacing:0.2em; color:var(--steel); }
-.crew-info h4{ font-size:19px; font-weight:800; display:flex; align-items:baseline; gap:9px; }
-.crew-info h4 small{ font-family:var(--mono); font-size:11px; font-weight:400; color:var(--floodlight); letter-spacing:0.06em; }
-.crew-info .role{ font-family:var(--ui); font-weight:500; font-size:12px; color:var(--steel); letter-spacing:0.03em; margin:5px 0 7px; }
-.crew-info p{ font-size:13.5px; color:var(--paper); opacity:.85; }
+.profiles{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(18px,3vw,36px); }
+.profiles .profile:first-child{ padding-right:clamp(18px,3vw,36px); border-right:1px solid var(--line); }
+.profile h4{ font-size:clamp(19px,2.2vw,24px); font-weight:800; display:flex; align-items:baseline; gap:9px; letter-spacing:-0.01em; }
+.profile h4 small{ font-family:var(--mono); font-size:11px; font-weight:400; color:var(--floodlight); letter-spacing:0.06em; }
+.profile p{ margin-top:9px; font-size:14px; color:var(--paper); opacity:.85; }
 .stats{ margin-top:clamp(40px,6vw,68px); display:grid; grid-template-columns:repeat(4,1fr); gap:18px; border-top:1px solid var(--line); padding-top:34px; }
 .stat b{ display:block; font-family:var(--display); font-weight:600; font-size:clamp(30px,4vw,48px); letter-spacing:0.01em; line-height:1; }
 .stat span{ font-family:var(--mono); font-size:11px; color:var(--steel); letter-spacing:0.06em; margin-top:8px; display:block; }
@@ -531,6 +528,8 @@ input,textarea{ cursor:text; }
   .footer-row{ flex-direction:column; } .footer .meta{ text-align:left; }
   .stats{ grid-template-columns:repeat(2,1fr); }
   .rec-hud.h-tr{ display:none; }
+  .profiles{ grid-template-columns:1fr; }
+  .profiles .profile:first-child{ padding:0 0 18px; border-right:none; border-bottom:1px solid var(--line); }
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
@@ -591,7 +590,7 @@ input,textarea{ cursor:text; }
 
   <div class="wrap">
     <div class="hero-eyebrow eyebrow"><span class="dot"></span> 스포츠 영상·사진 프로덕션 · SINCE 2026</div>
-    <h1>두 번은 없으니까,<br><span class="hl">한 번에</span> 제대로.</h1>
+    <h1>One shot.<br><span class="hl">Done right.</span></h1>
     <p class="sub">스포츠 현장의 속도부터 브랜드·행사·인물·제품까지, 한 번의 촬영에 담는다.</p>
     <div class="cta-row">
       <a href="#work" class="btn btn-primary" data-magnetic>포트폴리오 보기 <span class="arr">→</span></a>
@@ -662,15 +661,11 @@ input,textarea{ cursor:text; }
         <p class="about-note">기획부터 촬영, 편집, 색보정까지 한 팀에서 진행합니다. 외주 없이 일관된 톤을 유지하며, 현장 상황에 맞춰 빠르게 대응합니다.</p>
       </div>
       <div class="crew reveal">
-        <div class="crew-label">구성원 · MEMBERS</div>
-        <!-- TODO: 실제 프로필 사진·역할로 교체 -->
-        <div class="crew-card">
-          <div class="crew-photo"></div>
-          <div class="crew-info"><h4>양승환 <small>01</small></h4><div class="role">촬영 · 디렉팅</div><p>현장 촬영과 전체 디렉팅을 맡습니다.</p></div>
-        </div>
-        <div class="crew-card">
-          <div class="crew-photo"></div>
-          <div class="crew-info"><h4>최준영 <small>02</small></h4><div class="role">편집 · 색보정</div><p>편집과 색보정으로 결과물을 완성합니다.</p></div>
+        <div class="crew-label">작가 · TEAM</div>
+        <!-- TODO(임시): 실제 한줄소개·프로필로 교체 -->
+        <div class="profiles">
+          <div class="profile"><h4>양승환 <small>작가</small></h4><p>사진 · 영상 · 드론 촬영</p></div>
+          <div class="profile"><h4>최준영 <small>작가</small></h4><p>사진 · 영상 · 드론 촬영</p></div>
         </div>
       </div>
     </div>
