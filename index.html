@@ -3,24 +3,24 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>GRIP MATE — 스포츠 영상·사진 프로덕션</title>
+<title>Personal Frame — 스포츠 영상·사진 프로덕션</title>
 <meta name="description" content="스포츠를 중심으로 브랜드·행사·인물·제품까지, 영상과 사진으로 기록하는 프로덕션." />
 <meta name="theme-color" content="#1e1e1e" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231e1e1e'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23fcfaff' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='4.5' fill='none' stroke='%23ea5c2a' stroke-width='2'/%3E%3C/svg%3E" />
 <!-- 공유 미리보기 (TODO: 실제 도메인·1200x630 대표 프레임 이미지로 교체) -->
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="ko_KR" />
-<meta property="og:site_name" content="GRIP MATE" />
-<meta property="og:title" content="GRIP MATE — 스포츠 영상·사진 프로덕션" />
+<meta property="og:site_name" content="Personal Frame" />
+<meta property="og:title" content="Personal Frame — 스포츠 영상·사진 프로덕션" />
 <meta property="og:description" content="스포츠를 중심으로 브랜드·행사·인물·제품까지, 영상과 사진으로 기록하는 프로덕션." />
 <meta property="og:url" content="https://gripmate.kr/" />
 <meta property="og:image" content="https://gripmate.kr/og-image.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="GRIP MATE — 스포츠 영상·사진 프로덕션" />
+<meta name="twitter:title" content="Personal Frame — 스포츠 영상·사진 프로덕션" />
 <meta name="twitter:description" content="스포츠를 중심으로 브랜드·행사·인물·제품까지, 영상과 사진으로 기록하는 프로덕션." />
 <meta name="twitter:image" content="https://gripmate.kr/og-image.jpg" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"ProfessionalService","name":"GRIP MATE","description":"스포츠를 중심으로 브랜드·행사·인물·제품까지 다루는 영상·사진 촬영 프로덕션.","image":"https://gripmate.kr/og-image.jpg","email":"dol9111@gmail.com","url":"https://gripmate.kr/","areaServed":"KR","sameAs":["https://www.instagram.com/gripmate.kr/"]}
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"Personal Frame","description":"스포츠를 중심으로 브랜드·행사·인물·제품까지 다루는 영상·사진 촬영 프로덕션.","image":"https://gripmate.kr/og-image.jpg","email":"dol9111@gmail.com","url":"https://gripmate.kr/","areaServed":"KR","sameAs":["https://www.instagram.com/gripmate.kr/"]}
 </script>
 
 <!-- FONTS (전부 상업적·법적 무료) -->
@@ -88,6 +88,8 @@ body::after{ content:""; position:fixed; inset:0; z-index:9999; pointer-events:n
    3. 섹션 옆 3D 객체 (셔터·렌즈·플래시) — 글로시 업그레이드
    ============================================================ */
 .sec-obj{ width:64px; height:64px; flex:none; perspective:340px; }
+.head-mark{ width:64px; height:64px; flex:none; display:grid; place-items:center; border:1px solid var(--line); border-radius:12px; background:var(--ink-1); }
+.head-mark svg{ width:34px; height:34px; }
 .sec-obj .o{ position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:transform .5s ease; transform:rotateX(56deg) rotateZ(0); }
 .section-head:hover .sec-obj.spin .o,.rig-grid:hover .sec-obj.spin .o{ transform:rotateX(56deg) rotateZ(180deg); }
 /* 공통 글로스 하이라이트 */
@@ -149,8 +151,11 @@ body::after{ content:""; position:fixed; inset:0; z-index:9999; pointer-events:n
 .hero .wrap{ position:relative; z-index:3; width:100%; }
 @media (min-width:1080px){ .hero .wrap{ padding-right:clamp(0px,20vw,320px); } } /* 헤드라인이 우측 AF/MOTION 영역과 안 겹치게 */
 .hero-eyebrow{ margin-bottom:26px; }
-.hero h1{ font-family:var(--display); font-size:clamp(44px,9vw,116px); line-height:0.92; font-weight:600; letter-spacing:-0.02em; max-width:14ch; }
-.hero h1 .hl{ color:var(--floodlight); }
+.hero h1{ font-family:var(--display); font-weight:600; display:flex; align-items:center; gap:clamp(6px,0.9vw,16px); }
+.hero h1 .pro{ font-size:clamp(80px,17.5vw,224px); line-height:.78; letter-spacing:-0.04em; }
+.hero h1 .stack{ display:flex; flex-direction:column; justify-content:center; }
+.hero h1 .stack span{ font-size:clamp(29px,6.4vw,84px); line-height:1.02; letter-spacing:-0.02em; }
+.hero h1 .l2{ color:var(--floodlight); }
 .hero .sub{ margin-top:24px; max-width:48ch; color:var(--steel); font-size:clamp(15px,1.7vw,19px); line-height:1.7; }
 .hero .cta-row{ margin-top:38px; display:flex; gap:14px; flex-wrap:wrap; }
 /* 무빙 카테고리: 히어로 첫 화면 하단 티커로 */
@@ -548,9 +553,9 @@ input,textarea{ cursor:text; }
 <!-- ===================== NAV ===================== -->
 <nav class="nav" id="nav">
   <div class="wrap">
-    <a href="#home" class="brand" aria-label="GRIP MATE 홈">
+    <a href="#home" class="brand" aria-label="Personal Frame 홈">
       <span class="mark" aria-hidden="true"></span>
-      GRIP MATE <small>EST. 2026</small>
+      Personal Frame <small>EST. 2026</small>
     </a>
     <div class="nav-links" id="navLinks">
       <div class="nav-dd" id="navDD">
@@ -593,7 +598,7 @@ input,textarea{ cursor:text; }
 
   <div class="wrap">
     <div class="hero-eyebrow eyebrow"><span class="dot"></span> 스포츠 영상·사진 프로덕션 · SINCE 2026</div>
-    <h1>Professional<br><span class="hl">Production</span></h1>
+    <h1 aria-label="Professional Production"><span class="pro" aria-hidden="true">Pro</span><span class="stack" aria-hidden="true"><span class="l1">fessional</span><span class="l2">duction</span></span></h1>
     <p class="sub">스포츠 현장의 속도부터 브랜드·행사·인물·제품까지, 한 번의 촬영에 담는다.</p>
     <div class="cta-row">
       <a href="#work" class="btn btn-primary" data-magnetic>포트폴리오 보기 <span class="arr">→</span></a>
@@ -766,12 +771,12 @@ input,textarea{ cursor:text; }
 <div class="cat-page contact-page" id="contactPage" role="dialog" aria-modal="true" aria-label="촬영 문의">
   <div class="cat-top">
     <button class="cat-close" id="contactClose"><span class="bk">←</span> 돌아가기</button>
-    <span class="cat-brand">GRIP MATE</span>
+    <span class="cat-brand">Personal Frame</span>
   </div>
   <div class="wrap" style="padding-top:clamp(36px,6vw,72px); padding-bottom:clamp(60px,9vw,110px);">
     <div class="section-head">
       <div class="head-left">
-        <div class="sec-obj obj-flash" aria-hidden="true"><div class="o"></div></div>
+        <div class="head-mark" aria-hidden="true"><svg viewBox="0 0 56 56" fill="none" stroke="#cfcdd6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18V10a4 4 0 0 1 4-4h8"/><path d="M38 6h8a4 4 0 0 1 4 4v8"/><path d="M50 38v8a4 4 0 0 1-4 4h-8"/><path d="M18 50h-8a4 4 0 0 1-4-4v-8"/><circle cx="28" cy="28" r="5" fill="#ea5c2a" stroke="none"/></svg></div>
         <div>
           <div class="eyebrow"><span class="tc">00:58:44:00</span> — CONTACT</div>
           <h2 class="section-title">촬영 문의<span class="en">GET IN TOUCH</span></h2>
@@ -826,7 +831,7 @@ input,textarea{ cursor:text; }
   <div class="wrap">
     <div class="scrubber"></div>
     <div class="footer-row">
-      <div class="brand-lg">GRIP MATE</div>
+      <div class="brand-lg">Personal Frame</div>
       <nav class="footer-nav" aria-label="푸터 메뉴">
         <a href="#work">Portfolio</a>
         <a href="#about">About</a>
@@ -844,8 +849,8 @@ input,textarea{ cursor:text; }
       </div>
     </div>
     <div class="copy">
-      <!-- 브랜드명은 임시(GRIP MATE) — 확정 후 교체 -->
-      <span>© 2026 GRIP MATE. All rights reserved.</span>
+      <!-- 브랜드명 Personal Frame -->
+      <span>© 2026 Personal Frame. All rights reserved.</span>
       <span>SPORTS · BRAND · EVENTS · PEOPLE · COMMERCIAL</span>
     </div>
     <!-- TODO: 사업자 등록 후 ' · 사업자등록번호 000-00-00000' 추가 -->
@@ -857,7 +862,7 @@ input,textarea{ cursor:text; }
 <div class="cat-page" id="catPage" role="dialog" aria-modal="true" aria-label="카테고리 페이지">
   <div class="cat-top">
     <button class="cat-close" id="catClose"><span class="bk">←</span> 돌아가기</button>
-    <span class="cat-brand">GRIP MATE</span>
+    <span class="cat-brand">Personal Frame</span>
   </div>
   <div class="cat-hero">
     <div class="eyebrow"><span class="dot"></span><span id="catEyebrow">CATEGORY</span></div>
@@ -1291,7 +1296,7 @@ document.getElementById('contactForm').addEventListener('submit', async e => {
     type: val('type'), date: val('date'), place: val('place'), message: val('message')
   };
   const subject = `[촬영 문의] ${d.name || '익명'} · ${d.type}`;
-  const text = `이름/팀: ${d.name}\n전화: ${d.phone}\n이메일: ${d.email}\n촬영 종류: ${d.type}\n촬영 일정: ${d.date}\n촬영 지역: ${d.place}\n\n내용:\n${d.message}\n\n— GRIP MATE 홈페이지 문의폼`;
+  const text = `이름/팀: ${d.name}\n전화: ${d.phone}\n이메일: ${d.email}\n촬영 종류: ${d.type}\n촬영 일정: ${d.date}\n촬영 지역: ${d.place}\n\n내용:\n${d.message}\n\n— Personal Frame 홈페이지 문의폼`;
 
   if (GM_ENDPOINT) {
     // 백엔드 자동 발송(메일 창이 열리지 않음). 두 주소 동시 수신, 실패 시 mailto로 폴백.
