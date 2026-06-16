@@ -105,7 +105,7 @@ body::after{ content:""; position:fixed; inset:0; z-index:9999; pointer-events:n
 /* ============================================================
    4. NAV (더 큰 메뉴·로고)
    ============================================================ */
-.nav{ position:fixed; top:0; left:0; right:0; z-index:100; height:var(--nav-h); display:flex; align-items:center; background:rgba(30,30,30,0.5); backdrop-filter:blur(14px) saturate(140%); border-bottom:1px solid var(--line-2); transition:background .3s,border-color .3s; }
+.nav{ position:fixed; top:0; left:0; right:0; z-index:180; height:var(--nav-h); display:flex; align-items:center; background:rgba(30,30,30,0.5); backdrop-filter:blur(14px) saturate(140%); border-bottom:1px solid var(--line-2); transition:background .3s,border-color .3s; }
 .nav.scrolled{ background:rgba(30,30,30,0.85); border-bottom-color:var(--line); }
 .nav .wrap{ display:flex; align-items:center; justify-content:space-between; width:100%; }
 .brand{ display:flex; align-items:center; gap:12px; font-family:var(--display); font-weight:600; font-size:clamp(23px,5.2vw,35px); letter-spacing:0.02em; white-space:nowrap; }
@@ -479,10 +479,10 @@ input,textarea{ cursor:text; }
 .dd-item .ddk{ font-family:var(--sans); font-size:11px; color:var(--steel); }
 .dd-item .ddc{ font-family:var(--mono); font-size:11px; color:var(--floodlight); }
 
-.cat-page{ position:fixed; inset:0; z-index:160; background:var(--ink); overflow-y:auto; display:none; }
+.cat-page{ position:fixed; inset:0; z-index:160; background:var(--ink); overflow-y:auto; display:none; padding-top:var(--nav-h); }
 .cat-page.open{ display:block; animation:catin .4s cubic-bezier(.16,1,.3,1); }
 @keyframes catin{ from{ opacity:0; transform:translateY(16px); } to{ opacity:1; transform:none; } }
-.cat-top{ position:sticky; top:0; z-index:2; display:flex; align-items:center; justify-content:space-between; padding:18px var(--gut); background:rgba(30,30,30,0.72); backdrop-filter:blur(12px); border-bottom:1px solid var(--line-2); }
+.cat-top{ position:static; z-index:2; display:flex; align-items:center; justify-content:space-between; padding:18px var(--gut); background:rgba(30,30,30,0.72); backdrop-filter:blur(12px); border-bottom:1px solid var(--line-2); }
 .cat-close{ display:inline-flex; align-items:center; gap:9px; font-family:var(--ui); font-weight:600; font-size:14px; color:var(--paper); }
 .cat-close .bk{ font-size:18px; transition:transform .25s; }
 .cat-close:hover{ color:var(--floodlight); } .cat-close:hover .bk{ transform:translateX(-4px); }
