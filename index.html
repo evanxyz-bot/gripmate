@@ -280,17 +280,20 @@ input,textarea{ cursor:text; }
 /* ============================================================
    9. ABOUT
    ============================================================ */
-.mission{ font-family:var(--display-ko); font-size:clamp(22px,3vw,38px); line-height:1.35; font-weight:600; letter-spacing:-0.035em; max-width:20ch; }
+.mission{ font-family:var(--display-ko); font-size:clamp(22px,2.8vw,32px); line-height:1.32; font-weight:600; letter-spacing:-0.035em; max-width:20ch; word-break:keep-all; }
 .mission .dim{ color:var(--steel); }
-.mission-label{ font-family:var(--ui); font-weight:600; font-size:12px; letter-spacing:0.1em; color:var(--floodlight); text-transform:uppercase; margin-bottom:18px; }
-.about-grid{ display:grid; grid-template-columns:1fr 1.5fr 1fr; gap:clamp(24px,4vw,56px); align-items:center; margin-top:8px; }
+.mission-label{ font-family:var(--ui); font-weight:700; font-size:clamp(13px,1.5vw,16px); letter-spacing:0.16em; color:var(--floodlight); text-transform:uppercase; margin-bottom:16px; }
+.about-grid{ display:grid; grid-template-columns:1fr 1.7fr 1fr; gap:clamp(24px,4vw,56px); align-items:center; margin-top:8px; }
 .about-note{ margin-top:22px; color:var(--steel); max-width:42ch; }
 .crew{ display:grid; gap:16px; }
 .crew-label{ font-family:var(--mono); font-size:10px; letter-spacing:0.16em; color:var(--steel); text-transform:uppercase; margin-bottom:2px; }
 .about-mid{ text-align:center; }
-.about-mid .mission{ max-width:24ch; margin-left:auto; margin-right:auto; }
+.about-mid .mission{ max-width:none; margin-left:auto; margin-right:auto; }
 .about-mid .about-note{ margin-left:auto; margin-right:auto; }
 .profile{ display:flex; flex-direction:column; }
+/* 공동대표 시각 균형: 좌(양승환) 낮추고 우(최준영) 올림 */
+.about-grid .profile:first-child{ transform:translateY(42px); }
+.about-grid .profile:last-child{ transform:translateY(-42px); }
 .profile-photo{ aspect-ratio:4/5; border-radius:8px; overflow:hidden; background:var(--ink-2); border:1px solid var(--line); }
 .profile-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
 .profile-cap{ margin-top:14px; text-align:center; }
@@ -407,7 +410,7 @@ input,textarea{ cursor:text; }
 .field input,.field select,.field textarea{ background:var(--ink-2); border:1px solid var(--line); border-radius:4px; color:var(--paper); padding:14px 16px; transition:border-color .25s,background .25s; width:100%; }
 .field input:focus,.field select:focus,.field textarea:focus{ outline:none; border-color:var(--floodlight); background:var(--ink-1); }
 .field textarea{ resize:vertical; min-height:118px; line-height:1.6; }
-.field select{ appearance:none; background-image:linear-gradient(45deg,transparent 50%,var(--steel) 50%),linear-gradient(135deg,var(--steel) 50%,transparent 50%); background-position:calc(100% - 20px) 19px,calc(100% - 15px) 19px; background-size:5px 5px,5px 5px; background-repeat:no-repeat; }
+.field select{ appearance:none; -webkit-appearance:none; cursor:pointer; padding-right:46px; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23ea5c2a' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:calc(100% - 16px) center; background-size:16px; }
 .form .btn-primary{ justify-content:center; margin-top:6px; }
 .contact-side h3{ font-size:20px; font-weight:800; margin-bottom:6px; }
 .contact-side .desc{ color:var(--steel); font-size:14px; margin-bottom:24px; line-height:1.7; }
@@ -538,7 +541,7 @@ input,textarea{ cursor:text; }
   .footer-row{ flex-direction:column; } .footer .meta{ text-align:left; }
   .stats{ grid-template-columns:repeat(2,1fr); }
   .rec-hud.h-tr{ display:none; }
-  .about-grid .profile{ max-width:340px; margin-inline:auto; }
+  .about-grid .profile{ max-width:340px; margin-inline:auto; transform:none; }
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
@@ -764,11 +767,7 @@ input,textarea{ cursor:text; }
 
 <!-- ===================== CONTACT 랜딩 페이지 (#contact, 풀스크린 오버레이) ===================== -->
 <div class="cat-page contact-page" id="contactPage" role="dialog" aria-modal="true" aria-label="촬영 문의">
-  <div class="cat-top">
-    <button class="cat-close" id="contactClose"><span class="bk">←</span> 돌아가기</button>
-    <span class="cat-brand">Personal Frame</span>
-  </div>
-  <div class="wrap" style="padding-top:clamp(36px,6vw,72px); padding-bottom:clamp(60px,9vw,110px);">
+  <div class="wrap" style="padding-top:clamp(20px,4vw,44px); padding-bottom:clamp(60px,9vw,110px);">
     <div class="section-head">
       <div class="head-left">
         <div class="head-mark" aria-hidden="true"><svg viewBox="0 0 56 56" fill="none" stroke="#cfcdd6" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18V10a4 4 0 0 1 4-4h8"/><path d="M38 6h8a4 4 0 0 1 4 4v8"/><path d="M50 38v8a4 4 0 0 1-4 4h-8"/><path d="M18 50h-8a4 4 0 0 1-4-4v-8"/><circle cx="28" cy="28" r="5" fill="#ea5c2a" stroke="none"/></svg></div>
@@ -855,10 +854,6 @@ input,textarea{ cursor:text; }
 
 <!-- ===================== 카테고리 랜딩 페이지 (드롭다운에서 진입) ===================== -->
 <div class="cat-page" id="catPage" role="dialog" aria-modal="true" aria-label="카테고리 페이지">
-  <div class="cat-top">
-    <button class="cat-close" id="catClose"><span class="bk">←</span> 돌아가기</button>
-    <span class="cat-brand">Personal Frame</span>
-  </div>
   <div class="cat-hero">
     <div class="eyebrow"><span class="dot"></span><span id="catEyebrow">CATEGORY</span></div>
     <div class="cat-en" id="catEn"></div>
@@ -1213,8 +1208,7 @@ function openContact(){
 }
 function closeContact(){ contactPage.classList.remove('open'); if(!catPage.classList.contains('open')) document.body.style.overflow=''; if(location.hash==='#contact') history.replaceState(null,'',location.pathname+location.search); if(catLastFocus && catLastFocus.focus) catLastFocus.focus(); }
 
-document.getElementById('catClose').addEventListener('click', closeCatPage);
-document.getElementById('contactClose').addEventListener('click', closeContact);
+// 닫기는 상단 내비(로고·타 메뉴 클릭)·ESC 로 처리 — 돌아가기 버튼 제거됨
 document.addEventListener('keydown', e => { if(e.key==='Escape'){ if(contactPage.classList.contains('open')) closeContact(); else if(catPage.classList.contains('open')) closeCatPage(); } });
 
 function route(){
