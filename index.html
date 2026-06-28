@@ -554,36 +554,38 @@ input,textarea{ cursor:text; }
    히어로 2단: 텍스트(좌, 세로 스택) / 메인영상(우, 소개글은 영상 아래)
    ============================================================ */
 @media (min-width:1080px){
-  .hero{ align-items:center; }                       /* 콘텐츠 세로 중앙 */
+  /* 세로 공간 확보 위해 위/아래 패딩 축소 + 콘텐츠 중앙 */
+  .hero{ align-items:center; padding-top:calc(var(--nav-h) + clamp(14px,2.6vh,34px)); padding-bottom:clamp(28px,3.6vw,52px); }
   .hero .wrap.hero-split{
     display:grid;
-    grid-template-columns:minmax(0,0.86fr) minmax(0,1.18fr);  /* 영상 칼럼 더 크게 */
-    gap:clamp(44px,5.6vw,88px);                       /* 텍스트↔영상 간격 넓게 */
+    grid-template-columns:minmax(0,0.72fr) minmax(0,1fr); /* 좌 텍스트 / 우 영상(더 큰 몫) */
+    gap:clamp(56px,7vw,116px);                            /* 텍스트↔영상 간격 더 넓게 */
     align-items:center;
-    max-width:1280px;                                 /* 우측으로 더 확장 */
-    padding-right:clamp(40px,4vw,56px);               /* 영상을 오른쪽 끝쪽으로 */
+    max-width:1360px;                                     /* 더 넓게(와이드 화면도) */
+    padding-left:clamp(28px,3vw,48px);                    /* 좌측 여백 축소(공간 확보) */
+    padding-right:clamp(22px,2.4vw,38px);                 /* 영상을 오른쪽 끝쪽으로 */
   }
 }
 .hero-split .hero-left{ min-width:0; }
 .hero-split .hero-right{ min-width:0; width:100%; }
 
-/* 헤드라인: 가로형 (Pro 옆에 fessional/duction, pro 라인에 맞춤) */
-.hero-split h1{ flex-direction:row; align-items:center; gap:clamp(6px,0.8vw,14px); }
-.hero-split h1 .pro{ font-size:clamp(60px,9.5vw,128px); line-height:.82; }
+/* 헤드라인: 가로형 (Pro 옆에 fessional/duction, pro 라인) — 더 크게 */
+.hero-split h1{ flex-direction:row; align-items:center; gap:clamp(6px,0.8vw,14px); white-space:nowrap; }
+.hero-split h1 .pro{ font-size:clamp(64px,10vw,134px); line-height:.82; }
 .hero-split h1 .stack{ align-items:flex-start; }
-.hero-split h1 .stack span{ font-size:clamp(24px,3.7vw,46px); line-height:1.04; }
-.hero-split .sub{ margin-top:22px; max-width:42ch; font-size:clamp(16px,1.95vw,22px); }
-.hero-split .cta-row{ margin-top:30px; }
+.hero-split h1 .stack span{ font-size:clamp(26px,3.9vw,46px); line-height:1.04; }
+.hero-split .sub{ margin-top:20px; max-width:42ch; font-size:clamp(17px,2.05vw,24px); }
+.hero-split .cta-row{ margin-top:28px; }
 
-/* 우측 메인영상(크게) + 영상 아래 소개글 */
+/* 우측 메인영상(더 크게) + 영상 아래 소개글 (간격만 타이트하게) */
 .hero-right #featured{ padding:0; width:100%; }
 .hero-right #featured > .wrap{ display:block; width:100%; max-width:none; margin:0; padding:0; }
 .hero-right .feat-media{ width:100%; }
-.hero-right .feat-info{ margin-top:clamp(14px,1.7vw,22px); justify-content:flex-start; }
+.hero-right .feat-info{ margin-top:clamp(12px,1.4vw,16px); justify-content:flex-start; }
 .hero-right .feat-info .tag{ font-size:13px; }
-.hero-right .feat-info h3{ font-size:clamp(24px,2.6vw,34px); margin:9px 0 12px; line-height:1.1; }
-.hero-right .feat-info p{ font-size:clamp(14px,1.15vw,16px); line-height:1.65; max-width:54ch; }
-.hero-right .feat-stats{ margin-top:18px; padding-top:18px; gap:28px; }
+.hero-right .feat-info h3{ font-size:clamp(24px,2.6vw,34px); margin:7px 0 9px; line-height:1.08; }
+.hero-right .feat-info p{ font-size:clamp(14px,1.15vw,16px); line-height:1.6; max-width:54ch; }
+.hero-right .feat-stats{ margin-top:13px; padding-top:13px; gap:26px; }
 .hero-right .feat-stats div b{ font-size:27px; }
 .hero-right .feat-stats div span{ font-size:10px; }
 </style>
