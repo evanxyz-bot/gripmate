@@ -601,6 +601,13 @@ input,textarea{ cursor:text; }
 /* 하단 카테고리 티커 슬림화 */
 .cats-band.in-hero{ padding:8px 0; }
 .cats-band.in-hero .cat-word{ font-size:clamp(15px,2vw,24px); }
+
+/* 대표 영상: 클릭 시 그 자리에서 유튜브 재생(새 창 X) */
+.feat-yt{ position:absolute; inset:0; width:100%; height:100%; border:0; display:block; z-index:4; border-radius:inherit; }
+.feat-media.playing{ cursor:default; }
+.feat-media.playing .feat-poster,
+.feat-media.playing .hud,
+.feat-media.playing .play{ opacity:0; pointer-events:none; }
 </style>
 </head>
 
@@ -667,17 +674,19 @@ input,textarea{ cursor:text; }
     </div>
 
     <div class="hero-right">
-      <!-- 메인 영상(대표작) — 우측, 소개글은 영상 아래 -->
+      <!-- 메인 영상(대표작) — 우측, 소개글은 영상 아래
+           ▶ 유튜브 연결: 아래 #featMedia 의 data-youtube="영상ID" 만 채우면
+             클릭 시 새 창 없이 그 자리에서 바로 재생됩니다 (예: data-youtube="dQw4w9WgXcQ") -->
       <section class="section featured" id="featured">
         <div class="wrap">
-          <div class="feat-media" id="featMedia" role="button" tabindex="0" aria-label="대표 영상 재생">
+          <div class="feat-media" id="featMedia" data-youtube="" role="button" tabindex="0" aria-label="대표 영상 재생">
             <div class="feat-poster"></div>
             <div class="hud"><span>● SHOWREEL</span><span>작가 2인 · 4K</span></div>
             <div class="play" aria-hidden="true"></div>
           </div>
           <div class="feat-info reveal">
             <span class="tag">대표 영상 / SHOWREEL</span>
-            <h3>어떤 순간이든,<br>그 분위기까지.</h3>
+            <h3>기록이 아닌, 이야기를 담다.</h3>
             <p>장르를 가리지 않고, 매 순간에 어울리는 분위기를 고화질로 담아냅니다. 두 작가가 각자의 시선으로 완성한 영상을 한 편에 모았습니다.</p>
           </div>
         </div>
@@ -1142,8 +1151,27 @@ if('IntersectionObserver' in window && window.matchMedia('(hover: none)').matche
   document.querySelectorAll('.work-card').forEach(c => io.observe(c));
 }
 
+// 대표 영상: 클릭 시 새 창 없이 그 자리에서 유튜브 재생 (data-youtube="영상ID")
 const featMedia = document.getElementById('featMedia');
-if(featMedia){ featMedia.addEventListener('click', () => openLightbox(0)); featMedia.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openLightbox(0); } }); }
+function playFeatured(){
+  if(!featMedia) return;
+  const id = (featMedia.dataset.youtube || '').trim();
+  if(!id){ console.info('[featured] 유튜브 ID 미연결 — #featMedia data-youtube 에 영상 ID를 넣으세요.'); return; }
+  if(featMedia.classList.contains('playing')) return;
+  const f = document.createElement('iframe');
+  f.className = 'feat-yt';
+  f.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
+  f.title = '대표 영상'; f.loading = 'lazy'; f.allowFullscreen = true;
+  f.setAttribute('frameborder','0');
+  f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+  featMedia.appendChild(f);
+  featMedia.classList.add('playing');
+  featMedia.setAttribute('aria-label','대표 영상 재생 중');
+}
+if(featMedia){
+  featMedia.addEventListener('click', playFeatured);
+  featMedia.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); playFeatured(); } });
+}
 
 const lb = document.getElementById('lightbox');
 const lbClose = document.getElementById('lbClose');
