@@ -566,16 +566,19 @@ input,textarea{ cursor:text; }
     padding-right:clamp(22px,2.2vw,60px);                 /* 영상을 오른쪽 끝으로 */
   }
 }
-.hero-split .hero-left{ min-width:0; }
+.hero-split .hero-left{ min-width:0; align-self:stretch; display:flex; flex-direction:column; }
 .hero-split .hero-right{ min-width:0; width:100%; }
+.hero-split .hero-textblock{ flex:0 0 auto; }   /* 텍스트(헤드라인)는 위로 */
 
 /* 헤드라인: 가로형 (Pro 옆에 fessional/duction, pro 라인) — 더 크게 */
 .hero-split h1{ flex-direction:row; align-items:center; gap:clamp(6px,0.8vw,14px); white-space:nowrap; }
-.hero-split h1 .pro{ font-size:clamp(64px,10vw,196px); line-height:.82; }
+.hero-split h1 .pro{ font-size:clamp(64px,12.2vw,250px); line-height:.82; }
 .hero-split h1 .stack{ align-items:flex-start; }
-.hero-split h1 .stack span{ font-size:clamp(26px,4vw,70px); line-height:1.04; }
+.hero-split h1 .stack span{ font-size:clamp(26px,4.8vw,90px); line-height:1.04; }
 .hero-split .sub{ margin-top:20px; max-width:44ch; font-size:clamp(17px,1.5vw,26px); }
-.hero-split .cta-row{ margin-top:28px; }
+/* 버튼: 헤드라인 아래 빈 공간 중앙에 크게 */
+.hero-split .cta-row{ flex:1 1 auto; margin:0; display:flex; align-items:center; justify-content:center; gap:clamp(14px,1.4vw,22px); }
+.hero-split .cta-row .btn{ font-size:clamp(15px,1.25vw,19px); padding:clamp(16px,1.5vw,22px) clamp(28px,2.4vw,42px); }
 
 /* 우측 메인영상(더 크게) + 영상 아래 소개글 (간격만 타이트하게) */
 .hero-right #featured{ padding:0; width:100%; }
@@ -588,6 +591,15 @@ input,textarea{ cursor:text; }
 .hero-right .feat-stats{ margin-top:13px; padding-top:13px; gap:26px; }
 .hero-right .feat-stats div b{ font-size:27px; }
 .hero-right .feat-stats div span{ font-size:10px; }
+
+/* === REC 뷰파인더 프레임 상하 축소(하단 슬림) === */
+.hero .rec-frame .tl, .hero .rec-frame .tr{ top:calc(var(--nav-h) + 8px); }
+.hero .rec-hud.h-tl, .hero .rec-hud.h-tr{ top:calc(var(--nav-h) + 12px); }
+.hero .rec-frame .bl, .hero .rec-frame .br2{ bottom:48px; }
+.hero .rec-hud.h-bl, .hero .rec-hud.h-br, .hero .rec-hud.h-scroll{ bottom:54px; }
+/* 하단 카테고리 티커 슬림화 */
+.cats-band.in-hero{ padding:8px 0; }
+.cats-band.in-hero .cat-word{ font-size:clamp(15px,2vw,24px); }
 </style>
 </head>
 
@@ -632,7 +644,7 @@ input,textarea{ cursor:text; }
   <!-- 화면 자체가 촬영 뷰파인더 (REC HUD) -->
   <div class="rec-frame" aria-hidden="true">
     <span class="br tl"></span><span class="br tr"></span><span class="br bl"></span><span class="br br2"></span>
-    <div class="rec-hud h-tl"><span class="rdot"></span>REC&nbsp;&nbsp;<span class="rec-time" id="recTc">00:00:00:00</span></div>
+    <div class="rec-hud h-tl"><span class="rdot"></span>REC&nbsp;&nbsp;<span class="rec-time" id="recTc">00:00:00</span></div>
     <div class="rec-hud h-tr">4K · 24FPS · S-LOG</div>
     <div class="rec-hud h-bl">ISO 800 · 1/50 · ƒ1.4 · WB 5600K</div>
     <div class="rec-hud h-scroll">SCROLL ↓</div>
@@ -642,9 +654,11 @@ input,textarea{ cursor:text; }
 
   <div class="wrap hero-split">
     <div class="hero-left">
-      <div class="hero-eyebrow eyebrow"><span class="dot"></span> 스포츠 영상·사진 프로덕션 · SINCE 2026</div>
-      <h1 aria-label="Professional Production"><span class="pro" aria-hidden="true">Pro</span><span class="stack" aria-hidden="true"><span class="l1">fessional</span><span class="l2">duction</span></span></h1>
-      <p class="sub">스포츠 현장의 속도부터 브랜드·행사·인물·제품까지, 한 번의 촬영에 담는다.</p>
+      <div class="hero-textblock">
+        <div class="hero-eyebrow eyebrow"><span class="dot"></span> 스포츠 영상·사진 프로덕션 · SINCE 2026</div>
+        <h1 aria-label="Professional Production"><span class="pro" aria-hidden="true">Pro</span><span class="stack" aria-hidden="true"><span class="l1">fessional</span><span class="l2">duction</span></span></h1>
+        <p class="sub">스포츠 현장의 속도부터 브랜드·행사·인물·제품까지, 한 번의 촬영에 담는다.</p>
+      </div>
       <div class="cta-row">
         <a href="#work" class="btn btn-primary" data-magnetic>포트폴리오 보기 <span class="arr">→</span></a>
         <a href="#contact" class="btn btn-ghost" data-magnetic>촬영 문의 <span class="arr">→</span></a>
@@ -662,13 +676,8 @@ input,textarea{ cursor:text; }
           </div>
           <div class="feat-info reveal">
             <span class="tag">대표 영상 / SHOWREEL</span>
-            <h3>스포츠도, 웨딩도, 스냅도<br>결정적인 순간만.</h3>
-            <p>장르는 달라도 담는 건 같습니다 — 가장 결정적인 한 컷. 두 작가가 각자의 시선으로 완성한 작품을 한 편의 쇼릴에 모았습니다.</p>
-            <div class="feat-stats">
-              <div><b>2인</b><span>전속 작가</span></div>
-              <div><b>올장르</b><span>스포츠·웨딩·스냅</span></div>
-              <div><b>4K</b><span>촬영 · 편집</span></div>
-            </div>
+            <h3>어떤 순간이든,<br>그 분위기까지.</h3>
+            <p>장르를 가리지 않고, 매 순간에 어울리는 분위기를 고화질로 담아냅니다. 두 작가가 각자의 시선으로 완성한 영상을 한 편에 모았습니다.</p>
           </div>
         </div>
       </section>
@@ -1176,9 +1185,9 @@ if('IntersectionObserver' in window && !reduceMotion){
 
 // 현재 시각 시계 (REC HUD + 모니터)
 const recTc = document.getElementById('recTc');
-function clock(){ const d = new Date(); const ff = pad(Math.floor(d.getMilliseconds()/1000*24)); const t = `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}:${ff}`; if(recTc) recTc.textContent = t; }
+function clock(){ const d = new Date(); const t = `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`; if(recTc) recTc.textContent = t; }
 clock();
-if(!reduceMotion) setInterval(clock, 42); else setInterval(clock, 1000);
+setInterval(clock, 1000);
 
 // 마그네틱 버튼
 if(!reduceMotion && window.matchMedia('(hover: hover)').matches){
