@@ -557,8 +557,8 @@ input,textarea{ cursor:text; }
   .hero{ align-items:center; }                       /* 콘텐츠 세로 중앙 */
   .hero .wrap.hero-split{
     display:grid;
-    grid-template-columns:1.02fr 0.98fr;
-    gap:clamp(30px,4vw,64px);
+    grid-template-columns:0.9fr 1.1fr;               /* 영상 쪽을 더 크게 */
+    gap:clamp(22px,2.8vw,42px);
     align-items:center;
     padding-right:var(--gut);                         /* 우측 20vw 예약 해제 */
   }
@@ -571,20 +571,20 @@ input,textarea{ cursor:text; }
 .hero-split h1 .pro{ font-size:clamp(64px,11vw,150px); line-height:.82; }
 .hero-split h1 .stack{ align-items:flex-start; }
 .hero-split h1 .stack span{ font-size:clamp(26px,4.4vw,58px); line-height:1.05; }
-.hero-split .sub{ margin-top:22px; max-width:40ch; }
+.hero-split .sub{ margin-top:22px; max-width:46ch; font-size:clamp(16px,1.95vw,22px); }
 .hero-split .cta-row{ margin-top:30px; }
 
-/* 우측 메인영상 + 영상 아래 소개글(더 작은 글씨) */
+/* 우측 메인영상(크게) + 영상 아래 소개글 */
 .hero-right #featured{ padding:0; width:100%; }
 .hero-right #featured > .wrap{ display:block; width:100%; max-width:none; margin:0; padding:0; }
 .hero-right .feat-media{ width:100%; }
-.hero-right .feat-info{ margin-top:clamp(12px,1.5vw,18px); justify-content:flex-start; }
-.hero-right .feat-info .tag{ font-size:11px; }
-.hero-right .feat-info h3{ font-size:clamp(17px,1.7vw,22px); margin:6px 0 8px; line-height:1.08; }
-.hero-right .feat-info p{ font-size:12.5px; line-height:1.6; }
-.hero-right .feat-stats{ margin-top:14px; padding-top:14px; gap:20px; }
-.hero-right .feat-stats div b{ font-size:20px; }
-.hero-right .feat-stats div span{ font-size:9.5px; }
+.hero-right .feat-info{ margin-top:clamp(14px,1.7vw,22px); justify-content:flex-start; }
+.hero-right .feat-info .tag{ font-size:13px; }
+.hero-right .feat-info h3{ font-size:clamp(24px,2.6vw,34px); margin:9px 0 12px; line-height:1.1; }
+.hero-right .feat-info p{ font-size:clamp(14px,1.15vw,16px); line-height:1.65; max-width:54ch; }
+.hero-right .feat-stats{ margin-top:18px; padding-top:18px; gap:28px; }
+.hero-right .feat-stats div b{ font-size:27px; }
+.hero-right .feat-stats div span{ font-size:10px; }
 </style>
 </head>
 
