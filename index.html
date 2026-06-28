@@ -549,6 +549,42 @@ input,textarea{ cursor:text; }
   .reveal{ opacity:1; transform:none; }
   .rec-frame .br,.rec-hud,.rec-thirds,.rec-audio{ opacity:1; }
 }
+
+/* ============================================================
+   히어로 2단: 텍스트(좌, 세로 스택) / 메인영상(우, 소개글은 영상 아래)
+   ============================================================ */
+@media (min-width:1080px){
+  .hero{ align-items:center; }                       /* 콘텐츠 세로 중앙 */
+  .hero .wrap.hero-split{
+    display:grid;
+    grid-template-columns:1.02fr 0.98fr;
+    gap:clamp(30px,4vw,64px);
+    align-items:center;
+    padding-right:var(--gut);                         /* 우측 20vw 예약 해제 */
+  }
+}
+.hero-split .hero-left{ min-width:0; }
+.hero-split .hero-right{ min-width:0; width:100%; }
+
+/* 감각적인 세로 스택 헤드라인 (Pro / fessional / duction) */
+.hero-split h1{ flex-direction:column; align-items:flex-start; gap:2px; }
+.hero-split h1 .pro{ font-size:clamp(64px,11vw,150px); line-height:.82; }
+.hero-split h1 .stack{ align-items:flex-start; }
+.hero-split h1 .stack span{ font-size:clamp(26px,4.4vw,58px); line-height:1.05; }
+.hero-split .sub{ margin-top:22px; max-width:40ch; }
+.hero-split .cta-row{ margin-top:30px; }
+
+/* 우측 메인영상 + 영상 아래 소개글(더 작은 글씨) */
+.hero-right #featured{ padding:0; width:100%; }
+.hero-right #featured > .wrap{ display:block; width:100%; max-width:none; margin:0; padding:0; }
+.hero-right .feat-media{ width:100%; }
+.hero-right .feat-info{ margin-top:clamp(12px,1.5vw,18px); justify-content:flex-start; }
+.hero-right .feat-info .tag{ font-size:11px; }
+.hero-right .feat-info h3{ font-size:clamp(17px,1.7vw,22px); margin:6px 0 8px; line-height:1.08; }
+.hero-right .feat-info p{ font-size:12.5px; line-height:1.6; }
+.hero-right .feat-stats{ margin-top:14px; padding-top:14px; gap:20px; }
+.hero-right .feat-stats div b{ font-size:20px; }
+.hero-right .feat-stats div span{ font-size:9.5px; }
 </style>
 </head>
 
@@ -601,13 +637,38 @@ input,textarea{ cursor:text; }
     <div class="rec-audio"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div>
   </div>
 
-  <div class="wrap">
-    <div class="hero-eyebrow eyebrow"><span class="dot"></span> 스포츠 영상·사진 프로덕션 · SINCE 2026</div>
-    <h1 aria-label="Professional Production"><span class="pro" aria-hidden="true">Pro</span><span class="stack" aria-hidden="true"><span class="l1">fessional</span><span class="l2">duction</span></span></h1>
-    <p class="sub">스포츠 현장의 속도부터 브랜드·행사·인물·제품까지, 한 번의 촬영에 담는다.</p>
-    <div class="cta-row">
-      <a href="#work" class="btn btn-primary" data-magnetic>포트폴리오 보기 <span class="arr">→</span></a>
-      <a href="#contact" class="btn btn-ghost" data-magnetic>촬영 문의 <span class="arr">→</span></a>
+  <div class="wrap hero-split">
+    <div class="hero-left">
+      <div class="hero-eyebrow eyebrow"><span class="dot"></span> 스포츠 영상·사진 프로덕션 · SINCE 2026</div>
+      <h1 aria-label="Professional Production"><span class="pro" aria-hidden="true">Pro</span><span class="stack" aria-hidden="true"><span class="l1">fessional</span><span class="l2">duction</span></span></h1>
+      <p class="sub">스포츠 현장의 속도부터 브랜드·행사·인물·제품까지, 한 번의 촬영에 담는다.</p>
+      <div class="cta-row">
+        <a href="#work" class="btn btn-primary" data-magnetic>포트폴리오 보기 <span class="arr">→</span></a>
+        <a href="#contact" class="btn btn-ghost" data-magnetic>촬영 문의 <span class="arr">→</span></a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <!-- 메인 영상(대표작) — 우측, 소개글은 영상 아래 -->
+      <section class="section featured" id="featured">
+        <div class="wrap">
+          <div class="feat-media" id="featMedia" role="button" tabindex="0" aria-label="대표작 재생">
+            <div class="feat-poster"></div>
+            <div class="hud"><span>● FEATURED</span><span>04:12 · 4K</span></div>
+            <div class="play" aria-hidden="true"></div>
+          </div>
+          <div class="feat-info reveal">
+            <span class="tag">대표작 / FEATURED FILM</span>
+            <h3>리그 결승, 90분을<br>90초의 드라마로.</h3>
+            <p>관중석의 함성부터 마지막 휘슬까지, 결정적 장면만 추려 한 편으로 묶었다. 선수도 구단도 가장 먼저 공유한 영상.</p>
+            <div class="feat-stats">
+              <div><b>3캠</b><span>멀티캠 커버리지</span></div>
+              <div><b>48h</b><span>편집 납품</span></div>
+              <div><b>4K</b><span>촬영 · 납품</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   </div>
 
@@ -618,27 +679,6 @@ input,textarea{ cursor:text; }
 </header>
 
 <main>
-
-<!-- ===================== 대표작 ===================== -->
-<section class="section featured" id="featured">
-  <div class="wrap">
-    <div class="feat-media" id="featMedia" role="button" tabindex="0" aria-label="대표작 재생">
-      <div class="feat-poster"></div>
-      <div class="hud"><span>● FEATURED</span><span>04:12 · 4K</span></div>
-      <div class="play" aria-hidden="true"></div>
-    </div>
-    <div class="feat-info reveal">
-      <span class="tag">대표작 / FEATURED FILM</span>
-      <h3>리그 결승, 90분을<br>90초의 드라마로.</h3>
-      <p>관중석의 함성부터 마지막 휘슬까지, 결정적 장면만 추려 한 편으로 묶었다. 선수도 구단도 가장 먼저 공유한 영상.</p>
-      <div class="feat-stats">
-        <div><b>3캠</b><span>멀티캠 커버리지</span></div>
-        <div><b>48h</b><span>편집 납품</span></div>
-        <div><b>4K</b><span>촬영 · 납품</span></div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ===================== PORTFOLIO ===================== -->
 <section class="section" id="work">
