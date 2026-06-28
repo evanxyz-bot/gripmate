@@ -556,7 +556,7 @@ input,textarea{ cursor:text; }
 @media (min-width:1080px){
   /* 세로 공간 확보 위해 위/아래 패딩 축소 + 콘텐츠 중앙 */
   /* full-height 슬랙 제거 → 히어로가 콘텐츠에 맞게 줄고 하단 프레임이 위로 붙음 */
-  .hero{ align-items:center; min-height:auto; padding-top:calc(var(--nav-h) + clamp(64px,9vh,112px)); padding-bottom:clamp(82px,9.5vh,104px); }
+  .hero{ align-items:center; min-height:auto; padding-top:calc(var(--nav-h) + clamp(30px,4.6vh,66px)); padding-bottom:clamp(80px,9vh,100px); }
   .hero .wrap.hero-split{
     display:grid;
     grid-template-columns:minmax(0,0.78fr) minmax(0,1fr); /* 좌 텍스트 / 우 영상 */
@@ -584,7 +584,7 @@ input,textarea{ cursor:text; }
 /* 우측 메인영상(더 크게) + 영상 아래 소개글 (간격만 타이트하게) */
 .hero-right #featured{ padding:0; width:100%; }
 .hero-right #featured > .wrap{ display:block; width:100%; max-width:none; margin:0; padding:0; }
-.hero-right .feat-media{ width:100%; max-height:clamp(300px,43svh,520px); }  /* 화면 높이에 맞춰 캡(낮으면 와이드 시네마틱) */
+.hero-right .feat-media{ width:100%; max-height:clamp(300px,49svh,560px); }  /* 화면 높이에 맞춰 캡(낮으면 와이드 시네마틱) */
 .hero-right .feat-info{ margin-top:clamp(12px,1.4vw,16px); justify-content:flex-start; }
 .hero-right .feat-info .tag{ font-size:13px; }
 .hero-right .feat-info h3{ font-size:clamp(24px,2.6vw,34px); margin:7px 0 9px; line-height:1.08; }
@@ -594,8 +594,8 @@ input,textarea{ cursor:text; }
 .hero-right .feat-stats div span{ font-size:10px; }
 
 /* === REC 뷰파인더 프레임 상하 축소(하단 슬림) === */
-.hero .rec-frame .tl, .hero .rec-frame .tr{ top:calc(var(--nav-h) + 8px); }
-.hero .rec-hud.h-tl, .hero .rec-hud.h-tr{ top:calc(var(--nav-h) + 12px); }
+.hero .rec-frame .tl, .hero .rec-frame .tr{ top:calc(var(--nav-h) + 1px); }
+.hero .rec-hud.h-tl, .hero .rec-hud.h-tr{ top:calc(var(--nav-h) + 4px); }
 .hero .rec-frame .bl, .hero .rec-frame .br2{ bottom:48px; }
 .hero .rec-hud.h-bl, .hero .rec-hud.h-br, .hero .rec-hud.h-scroll{ bottom:54px; }
 /* 하단 카테고리 티커 슬림화 */
@@ -685,7 +685,6 @@ input,textarea{ cursor:text; }
             <div class="play" aria-hidden="true"></div>
           </div>
           <div class="feat-info reveal">
-            <span class="tag">대표 영상 / SHOWREEL</span>
             <h3>기록이 아닌, 이야기를 담다.</h3>
             <p>장르를 가리지 않고, 매 순간에 어울리는 분위기를 고화질로 담아냅니다. 두 작가가 각자의 시선으로 완성한 영상을 한 편에 모았습니다.</p>
           </div>
