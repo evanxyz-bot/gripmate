@@ -555,7 +555,8 @@ input,textarea{ cursor:text; }
    ============================================================ */
 @media (min-width:1080px){
   /* 세로 공간 확보 위해 위/아래 패딩 축소 + 콘텐츠 중앙 */
-  .hero{ align-items:center; padding-top:calc(var(--nav-h) + clamp(14px,2.6vh,34px)); padding-bottom:clamp(28px,3.6vw,52px); }
+  /* full-height 슬랙 제거 → 히어로가 콘텐츠에 맞게 줄고 하단 프레임이 위로 붙음 */
+  .hero{ align-items:center; min-height:auto; padding-top:calc(var(--nav-h) + clamp(64px,9vh,112px)); padding-bottom:clamp(82px,9.5vh,104px); }
   .hero .wrap.hero-split{
     display:grid;
     grid-template-columns:minmax(0,0.78fr) minmax(0,1fr); /* 좌 텍스트 / 우 영상 */
