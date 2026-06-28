@@ -580,7 +580,7 @@ input,textarea{ cursor:text; }
 /* 우측 메인영상(더 크게) + 영상 아래 소개글 (간격만 타이트하게) */
 .hero-right #featured{ padding:0; width:100%; }
 .hero-right #featured > .wrap{ display:block; width:100%; max-width:none; margin:0; padding:0; }
-.hero-right .feat-media{ width:100%; }
+.hero-right .feat-media{ width:100%; max-height:clamp(300px,43svh,520px); }  /* 화면 높이에 맞춰 캡(낮으면 와이드 시네마틱) */
 .hero-right .feat-info{ margin-top:clamp(12px,1.4vw,16px); justify-content:flex-start; }
 .hero-right .feat-info .tag{ font-size:13px; }
 .hero-right .feat-info h3{ font-size:clamp(24px,2.6vw,34px); margin:7px 0 9px; line-height:1.08; }
@@ -655,19 +655,19 @@ input,textarea{ cursor:text; }
       <!-- 메인 영상(대표작) — 우측, 소개글은 영상 아래 -->
       <section class="section featured" id="featured">
         <div class="wrap">
-          <div class="feat-media" id="featMedia" role="button" tabindex="0" aria-label="대표작 재생">
+          <div class="feat-media" id="featMedia" role="button" tabindex="0" aria-label="대표 영상 재생">
             <div class="feat-poster"></div>
-            <div class="hud"><span>● FEATURED</span><span>04:12 · 4K</span></div>
+            <div class="hud"><span>● SHOWREEL</span><span>작가 2인 · 4K</span></div>
             <div class="play" aria-hidden="true"></div>
           </div>
           <div class="feat-info reveal">
-            <span class="tag">대표작 / FEATURED FILM</span>
-            <h3>리그 결승, 90분을<br>90초의 드라마로.</h3>
-            <p>관중석의 함성부터 마지막 휘슬까지, 결정적 장면만 추려 한 편으로 묶었다. 선수도 구단도 가장 먼저 공유한 영상.</p>
+            <span class="tag">대표 영상 / SHOWREEL</span>
+            <h3>스포츠도, 웨딩도, 스냅도<br>결정적인 순간만.</h3>
+            <p>장르는 달라도 담는 건 같습니다 — 가장 결정적인 한 컷. 두 작가가 각자의 시선으로 완성한 작품을 한 편의 쇼릴에 모았습니다.</p>
             <div class="feat-stats">
-              <div><b>3캠</b><span>멀티캠 커버리지</span></div>
-              <div><b>48h</b><span>편집 납품</span></div>
-              <div><b>4K</b><span>촬영 · 납품</span></div>
+              <div><b>2인</b><span>전속 작가</span></div>
+              <div><b>올장르</b><span>스포츠·웨딩·스냅</span></div>
+              <div><b>4K</b><span>촬영 · 편집</span></div>
             </div>
           </div>
         </div>
