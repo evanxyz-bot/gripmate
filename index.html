@@ -558,12 +558,12 @@ input,textarea{ cursor:text; }
   .hero{ align-items:center; padding-top:calc(var(--nav-h) + clamp(14px,2.6vh,34px)); padding-bottom:clamp(28px,3.6vw,52px); }
   .hero .wrap.hero-split{
     display:grid;
-    grid-template-columns:minmax(0,0.72fr) minmax(0,1fr); /* 좌 텍스트 / 우 영상(더 큰 몫) */
-    gap:clamp(56px,7vw,116px);                            /* 텍스트↔영상 간격 더 넓게 */
+    grid-template-columns:minmax(0,0.78fr) minmax(0,1fr); /* 좌 텍스트 / 우 영상 */
+    gap:clamp(56px,8vw,190px);                            /* 화면 넓을수록 간격도 크게 */
     align-items:center;
-    max-width:1360px;                                     /* 더 넓게(와이드 화면도) */
-    padding-left:clamp(28px,3vw,48px);                    /* 좌측 여백 축소(공간 확보) */
-    padding-right:clamp(22px,2.4vw,38px);                 /* 영상을 오른쪽 끝쪽으로 */
+    max-width:1840px;                                     /* 와이드 화면 가득 활용 */
+    padding-left:clamp(26px,2.6vw,72px);                  /* 헤드라인을 왼쪽 끝으로 */
+    padding-right:clamp(22px,2.2vw,60px);                 /* 영상을 오른쪽 끝으로 */
   }
 }
 .hero-split .hero-left{ min-width:0; }
@@ -571,10 +571,10 @@ input,textarea{ cursor:text; }
 
 /* 헤드라인: 가로형 (Pro 옆에 fessional/duction, pro 라인) — 더 크게 */
 .hero-split h1{ flex-direction:row; align-items:center; gap:clamp(6px,0.8vw,14px); white-space:nowrap; }
-.hero-split h1 .pro{ font-size:clamp(64px,10vw,134px); line-height:.82; }
+.hero-split h1 .pro{ font-size:clamp(64px,10vw,196px); line-height:.82; }
 .hero-split h1 .stack{ align-items:flex-start; }
-.hero-split h1 .stack span{ font-size:clamp(26px,3.9vw,46px); line-height:1.04; }
-.hero-split .sub{ margin-top:20px; max-width:42ch; font-size:clamp(17px,2.05vw,24px); }
+.hero-split h1 .stack span{ font-size:clamp(26px,4vw,70px); line-height:1.04; }
+.hero-split .sub{ margin-top:20px; max-width:44ch; font-size:clamp(17px,1.5vw,26px); }
 .hero-split .cta-row{ margin-top:28px; }
 
 /* 우측 메인영상(더 크게) + 영상 아래 소개글 (간격만 타이트하게) */
