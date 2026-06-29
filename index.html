@@ -180,9 +180,9 @@ body::after{ content:""; position:fixed; inset:0; z-index:9999; pointer-events:n
 .rec-hud.h-tr{ top:calc(var(--nav-h) + 22px); right:42px; }
 .rec-hud.h-bl{ bottom:86px; left:42px; }
 .rec-hud.h-br{ bottom:86px; right:42px; display:flex; align-items:center; gap:8px; }
-.rec-hud .batt{ display:inline-block; width:22px; height:11px; border:1px solid currentColor; border-radius:2px; position:relative; }
-.rec-hud .batt::before{ content:""; position:absolute; left:1px; top:1px; bottom:1px; width:70%; background:var(--floodlight); border-radius:1px; }
-.rec-hud .batt::after{ content:""; position:absolute; right:-3px; top:3px; bottom:3px; width:2px; background:currentColor; }
+.rec-hud .batt{ display:inline-block; width:27px; height:13px; border:1.5px solid currentColor; border-radius:2.5px; position:relative; }
+.rec-hud .batt::before{ content:""; position:absolute; inset:2px; background:repeating-linear-gradient(90deg, #43c47b 0 5px, transparent 5px 7px); border-radius:1px; }
+.rec-hud .batt::after{ content:""; position:absolute; right:-4px; top:4px; bottom:4px; width:2.5px; background:currentColor; border-radius:0 2px 2px 0; }
 @keyframes recBoot{ to{ opacity:1; } }
 @keyframes blink{ 50%{ opacity:.25; } }
 /* 삼분할 가이드 (아주 옅게) */
@@ -556,7 +556,7 @@ input,textarea{ cursor:text; }
 @media (min-width:1080px){
   /* 세로 공간 확보 위해 위/아래 패딩 축소 + 콘텐츠 중앙 */
   /* full-height 슬랙 제거 → 히어로가 콘텐츠에 맞게 줄고 하단 프레임이 위로 붙음 */
-  .hero{ align-items:center; min-height:auto; padding-top:calc(var(--nav-h) + clamp(30px,4.6vh,66px)); padding-bottom:clamp(80px,9vh,100px); }
+  .hero{ align-items:center; min-height:auto; padding-top:calc(var(--nav-h) + clamp(30px,4.6vh,66px)); padding-bottom:clamp(96px,10.6vh,120px); }
   .hero .wrap.hero-split{
     display:grid;
     grid-template-columns:minmax(0,0.78fr) minmax(0,1fr); /* 좌 텍스트 / 우 영상 */
@@ -595,16 +595,32 @@ input,textarea{ cursor:text; }
 
 /* === REC 뷰파인더 프레임 상하 축소(하단 슬림) === */
 .hero .rec-frame .tl, .hero .rec-frame .tr{ top:calc(var(--nav-h) + 1px); }
-.hero .rec-hud.h-tl, .hero .rec-hud.h-tr{ top:calc(var(--nav-h) + 4px); }
 .hero .rec-frame .bl, .hero .rec-frame .br2{ bottom:48px; }
-.hero .rec-hud.h-bl, .hero .rec-hud.h-br, .hero .rec-hud.h-scroll{ bottom:54px; }
+/* 코너 HUD: 글자 키우고 코너 브래킷에서 살짝 띄움 */
+.hero .rec-hud{ font-size:12.5px; }
+.hero .rec-hud.h-tl, .hero .rec-hud.h-tr{ top:calc(var(--nav-h) + 14px); }
+.hero .rec-hud.h-bl, .hero .rec-hud.h-br, .hero .rec-hud.h-scroll{ bottom:64px; }
+.hero .rec-hud.h-tl, .hero .rec-hud.h-bl{ left:62px; }
+.hero .rec-hud.h-tr, .hero .rec-hud.h-br{ right:62px; }
 /* 하단 카테고리 티커 슬림화 */
 .cats-band.in-hero{ padding:8px 0; }
 .cats-band.in-hero .cat-word{ font-size:clamp(15px,2vw,24px); }
 
 /* 대표 영상: 클릭 시 그 자리에서 유튜브 재생(새 창 X) */
-.feat-yt{ position:absolute; inset:0; z-index:4; border-radius:inherit; overflow:hidden; background:#000; }
+.feat-yt{ position:absolute; inset:0; z-index:4; border-radius:7px; overflow:hidden; background:#000; }
 .feat-yt iframe, #featPlayer{ width:100%; height:100%; border:0; display:block; }
+
+/* 대표 영상: 세련된 TV 박스(베젤) 위에 영상 얹기 + 약 10% 축소 */
+.hero-right .feat-media{
+  width:92%; margin-left:auto;                       /* 우측 정렬 + 살짝 작게 */
+  border:clamp(9px,0.95vw,15px) solid #0c0e12;       /* TV 베젤 */
+  border-radius:18px; background:#000;
+  box-shadow:
+    0 34px 72px -24px rgba(0,0,0,.82),
+    0 0 0 1px rgba(255,255,255,.05),
+    inset 0 0 0 1px rgba(255,255,255,.06);
+}
+.hero-right .feat-media .feat-poster{ border-radius:7px; }
 
 /* MOTION 배경어를 좌측 하단으로 (우측 영상에 안 가리게) */
 @media (min-width:1080px){
