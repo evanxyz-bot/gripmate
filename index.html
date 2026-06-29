@@ -679,7 +679,7 @@ input,textarea{ cursor:text; }
              클릭 시 새 창 없이 그 자리에서 바로 재생됩니다 (예: data-youtube="dQw4w9WgXcQ") -->
       <section class="section featured" id="featured">
         <div class="wrap">
-          <div class="feat-media" id="featMedia" data-youtube="" role="button" tabindex="0" aria-label="대표 영상 재생">
+          <div class="feat-media" id="featMedia" data-youtube="7spvj099VAw" data-start="6" role="button" tabindex="0" aria-label="대표 영상 재생">
             <div class="feat-poster"></div>
             <div class="hud"><span>● SHOWREEL</span><span>작가 2인 · 4K</span></div>
             <div class="play" aria-hidden="true"></div>
@@ -1150,16 +1150,21 @@ if('IntersectionObserver' in window && window.matchMedia('(hover: none)').matche
   document.querySelectorAll('.work-card').forEach(c => io.observe(c));
 }
 
-// 대표 영상: 클릭 시 새 창 없이 그 자리에서 유튜브 재생 (data-youtube="영상ID")
+// 대표 영상: 클릭 시 새 창 없이 그 자리에서 유튜브 재생
+// data-youtube 에 "영상ID" 또는 전체 URL 둘 다 OK. 시작시간은 data-start 또는 URL의 t= 사용
 const featMedia = document.getElementById('featMedia');
 function playFeatured(){
   if(!featMedia) return;
-  const id = (featMedia.dataset.youtube || '').trim();
-  if(!id){ console.info('[featured] 유튜브 ID 미연결 — #featMedia data-youtube 에 영상 ID를 넣으세요.'); return; }
+  const raw = (featMedia.dataset.youtube || '').trim();
+  if(!raw){ console.info('[featured] 유튜브 미연결 — #featMedia data-youtube 에 영상ID/URL을 넣으세요.'); return; }
+  const m = raw.match(/(?:youtu\.be\/|[?&]v=|\/embed\/)([\w-]{11})/);
+  const id = m ? m[1] : raw;
+  let start = parseInt(featMedia.dataset.start || '', 10);
+  if(isNaN(start)){ const t = raw.match(/[?&]t=(\d+)/); start = t ? parseInt(t[1],10) : 0; }
   if(featMedia.classList.contains('playing')) return;
   const f = document.createElement('iframe');
   f.className = 'feat-yt';
-  f.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
+  f.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&playsinline=1${start?`&start=${start}`:''}`;
   f.title = '대표 영상'; f.loading = 'lazy'; f.allowFullscreen = true;
   f.setAttribute('frameborder','0');
   f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
