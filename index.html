@@ -605,6 +605,10 @@ input,textarea{ cursor:text; }
 /* 대표 영상: 클릭 시 그 자리에서 유튜브 재생(새 창 X) */
 .feat-yt{ position:absolute; inset:0; z-index:4; border-radius:inherit; overflow:hidden; background:#000; }
 .feat-yt iframe, #featPlayer{ width:100%; height:100%; border:0; display:block; }
+
+/* 포트폴리오 섹션을 위로 당겨 첫 화면 하단에 '포트폴리오' 글자가 살짝 보이게(스크롤 유도)
+   화면 높이에 따라 패딩을 조절해 어느 높이에서나 헤딩이 ~50px 보이도록 보정 */
+#work{ padding-top:clamp(16px, calc(40vh - 296px), 168px); }
 .feat-media.playing{ cursor:default; }
 .feat-media.playing .feat-poster,
 .feat-media.playing .hud,
