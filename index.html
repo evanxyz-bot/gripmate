@@ -764,7 +764,7 @@ input,textarea{ cursor:text; }
           <div class="eyebrow"><span class="tc">00:39:18:00</span> — CAPABILITIES</div>
         </div>
         <p class="rig-lead">사진과 영상, 드론·짐벌 촬영까지. <span class="dim">현장과 목적에 맞는 방식으로 촬영하고, 편집·색보정까지 마칩니다.</span></p>
-        <p class="rig-note">8K 광고 영상부터 세로형 숏폼까지, 매체에 맞는 포맷으로 제작합니다.</p>
+        <p class="rig-note">광고 영상부터 세로형 숏폼까지, 매체에 맞는 포맷으로 제작합니다.</p>
       </div>
       <div class="rig-list reveal" id="rigList"></div>
     </div>
@@ -987,9 +987,9 @@ const SERVICES = [
 ];
 
 const PACKAGES = [
-  { name:'하이라이트', cam:'1인 1캠', desc:'경기·행사의 핵심을 빠르게 정리.', items:['하이라이트 영상 1편','세로형 숏폼 1편','1주 이내 전달'], price:'시작가 문의' },
-  { name:'멀티캠', cam:'2인 2~3캠 + 짐벌', desc:'여러 앵글로 안정적인 커버리지.', feat:true, items:['풀 영상 + 하이라이트','세로형 숏폼 2편','색보정 포함','원본 제공'], price:'문의' },
-  { name:'시네마틱', cam:'2인 + 짐벌·드론', desc:'광고 수준의 연출과 색감.', items:['시네마틱 필름 + 풀버전','세로형 숏폼 3편','드론·항공 컷','색보정 + 원본'], price:'문의' },
+  { name:'하이라이트', cam:'단일 카메라', desc:'경기·행사의 핵심을 빠르게 정리.', items:['하이라이트 영상 1편','세로형 숏폼 1편','1주 이내 전달'], price:'시작가 문의' },
+  { name:'멀티캠', cam:'멀티캠 + 짐벌', desc:'여러 앵글로 안정적인 커버리지.', feat:true, items:['풀 영상 + 하이라이트','세로형 숏폼 2편','색보정 포함','원본 제공'], price:'문의' },
+  { name:'시네마틱', cam:'짐벌 · 드론', desc:'광고 수준의 연출과 색감.', items:['시네마틱 필름 + 풀버전','세로형 숏폼 3편','드론·항공 컷','색보정 + 원본'], price:'문의' },
 ];
 
 const STEPS = [
@@ -1006,7 +1006,7 @@ const CAPS = [
   { n:'멀티캠', s:'MULTI-CAM' }, { n:'편집 · 색보정', s:'POST' },
 ];
 // 제작 가능한 포맷
-const FORMATS = ['8K 광고 영상','4K 하이라이트 · 다큐','세로형 숏폼 / 릴스','라이브 · 멀티캠','제품 · 룩북 사진'];
+const FORMATS = ['광고 영상','하이라이트 · 다큐','세로형 숏폼 / 릴스','라이브 · 멀티캠','제품 · 룩북 사진'];
 
 const REVIEWS = [
   { q:'경기 흐름을 정확히 짚어 편집해 주셨어요. 선수단 반응이 정말 좋았습니다.', who:'○○ FC 감독' },
@@ -1015,7 +1015,7 @@ const REVIEWS = [
 ];
 
 const STATS = [
-  { n:'120+', l:'촬영 프로젝트' }, { n:'40+', l:'함께한 팀·브랜드' }, { n:'2인', l:'기획·촬영·편집' }, { n:'24h', l:'평균 문의 응답' },
+  { n:'120+', l:'촬영 프로젝트' }, { n:'40+', l:'함께한 팀·브랜드' }, { n:'48h', l:'우선 컷 전달' }, { n:'24h', l:'평균 문의 응답' },
 ];
 
 // 경력 / 이력 (TODO: 실제 이력으로 교체)
@@ -1095,7 +1095,7 @@ STEPS.forEach(s => { const d = document.createElement('div'); d.className = 'ste
 const rigEl = document.getElementById('rigList');
 CAPS.forEach(g => { const d = document.createElement('div'); d.className = 'rig-item'; d.innerHTML = `<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 10 6-3v10l-6-3"/></svg><span>${g.n}<small>${g.s}</small></span>`; rigEl.appendChild(d); });
 const formatsEl = document.getElementById('formats');
-if(formatsEl){ const lab=document.createElement('span'); lab.className='flabel'; lab.textContent='FORMATS'; formatsEl.appendChild(lab); FORMATS.forEach(f => { const s=document.createElement('span'); s.className='format'+(f.indexOf('8K')>=0?' feat':''); s.textContent=f; formatsEl.appendChild(s); }); }
+if(formatsEl){ const lab=document.createElement('span'); lab.className='flabel'; lab.textContent='FORMATS'; formatsEl.appendChild(lab); FORMATS.forEach((f,i) => { const s=document.createElement('span'); s.className='format'+(i===0?' feat':''); s.textContent=f; formatsEl.appendChild(s); }); }
 
 const revEl = document.getElementById('revGrid');
 REVIEWS.forEach(r => { const d = document.createElement('div'); d.className = 'rev'; d.innerHTML = `<div class="stars">★★★★★</div><p>“${r.q}”</p><div class="who">— ${r.who}</div>`; revEl.appendChild(d); });
