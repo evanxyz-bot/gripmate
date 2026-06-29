@@ -319,11 +319,13 @@ input,textarea{ cursor:text; }
 .rig-lead{ font-size:clamp(20px,2.4vw,28px); font-weight:700; letter-spacing:-0.02em; line-height:1.4; }
 .rig-lead .dim{ color:var(--steel); font-weight:500; }
 .rig-note{ margin-top:18px; color:var(--steel); font-size:14px; max-width:40ch; }
+.rig-cells{ display:flex; flex-direction:column; gap:clamp(20px,2.6vw,32px); }
+.cell-label{ font-family:var(--mono); font-size:11.5px; letter-spacing:0.16em; color:var(--steel); text-transform:uppercase; margin-bottom:12px; }
 .rig-list{ display:flex; flex-wrap:wrap; gap:10px; }
-.rig-item{ display:inline-flex; align-items:center; gap:9px; font-family:var(--ui); font-weight:500; font-size:14px; border:1px solid var(--line); border-radius:5px; padding:12px 16px; background:var(--ink); transition:.25s; }
-.rig-item:hover{ border-color:var(--floodlight); }
-.rig-item .ic{ width:18px; height:18px; color:var(--floodlight); flex:none; }
-.rig-item small{ display:block; font-family:var(--mono); font-size:9px; color:var(--steel); letter-spacing:0.06em; }
+.rig-item{ display:inline-flex; align-items:center; font-family:var(--ui); font-weight:600; font-size:16.5px; border:1px solid var(--line); border-radius:7px; padding:13px 20px; background:var(--ink); transition:.22s; cursor:default; }
+.rig-item:hover{ border-color:var(--floodlight); color:#fff; background:linear-gradient(180deg,rgba(234,92,42,.16),rgba(234,92,42,.06)); box-shadow:0 0 0 1px var(--floodlight), 0 8px 22px rgba(234,92,42,.22); }
+.rig-item small{ display:block; font-family:var(--mono); font-size:10.5px; color:var(--steel); letter-spacing:0.06em; margin-top:2px; }
+.rig-item:hover small{ color:rgba(255,255,255,.7); }
 .formats{ margin-top:clamp(30px,4vw,48px); border-top:1px solid var(--line); padding-top:24px; display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
 .formats .flabel{ font-family:var(--mono); font-size:10px; letter-spacing:0.16em; color:var(--steel); text-transform:uppercase; margin-right:10px; }
 .format{ font-family:var(--ui); font-weight:500; font-size:14px; border:1px solid var(--line); border-radius:999px; padding:9px 16px; color:var(--paper); transition:.25s; }
@@ -353,15 +355,16 @@ input,textarea{ cursor:text; }
 .pkg{ border:1px solid var(--line); border-radius:8px; padding:28px 24px; background:var(--ink-1); display:flex; flex-direction:column; position:relative; transition:.3s; }
 .pkg:hover{ transform:translateY(-4px); border-color:var(--steel); }
 .pkg.feat{ border-color:var(--floodlight); background:linear-gradient(180deg,rgba(234,92,42,.06),var(--ink-1) 40%); }
-.pkg .badge{ position:absolute; top:-11px; left:24px; background:var(--floodlight); color:var(--ink); font-family:var(--ui); font-weight:700; font-size:11px; letter-spacing:0.04em; padding:4px 11px; border-radius:999px; }
-.pkg .pname{ font-size:21px; font-weight:800; letter-spacing:-0.01em; }
-.pkg .cam{ font-family:var(--mono); font-size:11px; color:var(--floodlight); letter-spacing:0.06em; margin-top:6px; }
-.pkg .pdesc{ font-size:13px; color:var(--steel); margin-top:12px; line-height:1.6; }
+.pkg .badge{ position:absolute; top:-12px; left:24px; background:var(--floodlight); color:var(--ink); font-family:var(--ui); font-weight:700; font-size:12.5px; letter-spacing:0.04em; padding:5px 13px; border-radius:999px; }
+.pkg .badge-alt{ background:transparent; color:var(--paper); border:1px solid var(--steel); }
+.pkg .pname{ font-size:25px; font-weight:800; letter-spacing:-0.01em; }
+.pkg .cam{ font-family:var(--mono); font-size:12.5px; color:var(--floodlight); letter-spacing:0.06em; margin-top:7px; }
+.pkg .pdesc{ font-size:14.5px; color:var(--steel); margin-top:12px; line-height:1.65; }
 .pkg ul{ list-style:none; margin:18px 0; display:grid; gap:10px; }
-.pkg li{ font-size:13.5px; display:flex; gap:10px; align-items:flex-start; color:var(--paper); }
+.pkg li{ font-size:15px; display:flex; gap:10px; align-items:flex-start; color:var(--paper); }
 .pkg li::before{ content:""; width:14px; height:14px; flex:none; margin-top:3px; border-radius:50%; background:rgba(234,92,42,.15); background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ea5c2a' stroke-width='3'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E"); background-size:10px; background-position:center; background-repeat:no-repeat; }
-.pkg .price{ margin-top:auto; padding-top:18px; border-top:1px solid var(--line); font-family:var(--mono); font-size:13px; color:var(--steel); letter-spacing:0.04em; }
-.pkg .price b{ color:var(--paper); font-size:15px; }
+.pkg .price{ margin-top:auto; padding-top:18px; border-top:1px solid var(--line); font-family:var(--mono); font-size:14px; color:var(--steel); letter-spacing:0.04em; }
+.pkg .price b{ color:var(--paper); font-size:17px; }
 .pkg-note{ margin-top:16px; font-family:var(--mono); font-size:10.5px; color:var(--steel); letter-spacing:0.03em; }
 .process{ margin-top:clamp(46px,7vw,80px); }
 .process .scrubber{ margin-bottom:26px; }
@@ -435,13 +438,13 @@ input,textarea{ cursor:text; }
 .footer .scrubber{ margin-bottom:38px; }
 .footer-row{ display:flex; align-items:flex-start; justify-content:space-between; gap:30px; flex-wrap:wrap; }
 .footer .brand-lg{ font-family:var(--display); font-weight:600; font-size:clamp(40px,7vw,86px); line-height:.85; letter-spacing:0.01em; }
-.footer .meta{ font-family:var(--mono); font-size:11px; color:var(--steel); letter-spacing:0.05em; text-align:right; line-height:2; }
-.footer-nav{ display:flex; flex-direction:column; gap:9px; font-family:var(--ui); font-size:14px; font-weight:500; }
+.footer .meta{ font-family:var(--mono); font-size:13px; color:var(--steel); letter-spacing:0.05em; text-align:right; line-height:2.1; }
+.footer-nav{ display:flex; flex-direction:column; gap:10px; font-family:var(--ui); font-size:15.5px; font-weight:500; }
 .footer-nav a{ color:var(--steel); transition:color .2s; }
 .footer-nav a:hover{ color:var(--paper); }
 .footer .meta a:hover{ color:var(--floodlight); }
-.footer .copy{ margin-top:38px; font-family:var(--mono); font-size:10.5px; color:var(--steel); letter-spacing:0.05em; display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; }
-.footer .biz{ margin-top:10px; font-family:var(--mono); font-size:10px; color:var(--steel); letter-spacing:0.04em; }
+.footer .copy{ margin-top:38px; font-family:var(--mono); font-size:13px; color:var(--steel); letter-spacing:0.05em; display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+.footer .biz{ margin-top:10px; font-family:var(--mono); font-size:12.5px; color:var(--steel); letter-spacing:0.04em; line-height:1.9; }
 
 /* ============================================================
    15. 라이트박스
@@ -630,11 +633,18 @@ input,textarea{ cursor:text; }
 
 /* 포트폴리오 섹션을 위로 당겨 첫 화면 하단에 '포트폴리오' 글자가 살짝 보이게(스크롤 유도)
    화면 높이에 따라 패딩을 조절해 어느 높이에서나 헤딩이 ~50px 보이도록 보정 */
-#work{ padding-top:clamp(16px, calc(40vh - 296px), 168px); }
+/* 후기를 포폴 위로 → 첫 화면 하단에 제목+별점이 일부 보이게(스크롤 유도)
+   별점 행 위치 기준으로 보정해 화면높이와 무관하게 별점이 살짝 보이도록 */
+#reviews{ padding-top:clamp(6px, calc(38vh - 378px), 160px); }
+#reviews .section-head{ margin-bottom:16px; }
+#reviews .rev{ padding-top:20px; }
 .feat-media.playing{ cursor:default; }
 .feat-media.playing .feat-poster,
 .feat-media.playing .hud,
 .feat-media.playing .play{ opacity:0; pointer-events:none; }
+
+/* 소개(About): 제목과 내용(작가 사진·소개)이 너무 떨어져 → 간격 축소 */
+#about .section-head{ margin-bottom:clamp(18px,2.2vw,28px); }
 </style>
 </head>
 
@@ -728,6 +738,20 @@ input,textarea{ cursor:text; }
 
 <main>
 
+<!-- ===================== 후기 (포폴 위로 이동) ===================== -->
+<!-- TODO: 실제 후기로 교체 -->
+<section class="section reviews" id="reviews">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow"><span class="tc">00:53:30:04</span> — REVIEWS</div>
+        <h2 class="section-title">고객 후기<span class="en">CLIENT NOTES</span></h2>
+      </div>
+    </div>
+    <div class="rev-grid reveal" id="revGrid"></div>
+  </div>
+</section>
+
 <!-- ===================== PORTFOLIO ===================== -->
 <section class="section" id="work">
   <div class="wrap">
@@ -792,9 +816,17 @@ input,textarea{ cursor:text; }
         <p class="rig-lead">사진과 영상, 드론·짐벌 촬영까지. <span class="dim">현장과 목적에 맞는 방식으로 촬영하고, 편집·색보정까지 마칩니다.</span></p>
         <p class="rig-note">광고 영상부터 세로형 숏폼까지, 매체에 맞는 포맷으로 제작합니다.</p>
       </div>
-      <div class="rig-list reveal" id="rigList"></div>
+      <div class="reveal rig-cells">
+        <div class="cell-group">
+          <div class="cell-label">촬영 분야</div>
+          <div class="rig-list" id="rigList"></div>
+        </div>
+        <div class="cell-group">
+          <div class="cell-label">포맷</div>
+          <div class="rig-list" id="formats"></div>
+        </div>
+      </div>
     </div>
-    <div class="formats reveal" id="formats"></div>
   </div>
 </section>
 
@@ -814,7 +846,7 @@ input,textarea{ cursor:text; }
 
     <div class="pkg-head reveal"><h3>촬영 패키지</h3><span class="en">PACKAGES</span></div>
     <div class="pkg-grid reveal" id="pkgGrid"></div>
-    <p class="pkg-note reveal">* 현금가 기준 · 카드 결제 시 VAT 별도 · 출장·드론·추가 캠은 규모에 따라 별도. 정확한 견적은 문의.</p>
+    <p class="pkg-note reveal">* 표기 금액은 VAT 포함가 · 출장·드론·추가 캠은 규모에 따라 별도. 정확한 견적은 문의.</p>
 
     <div class="process reveal">
       <div class="scrubber"></div>
@@ -824,20 +856,6 @@ input,textarea{ cursor:text; }
       <p>비용은 촬영 규모와 분량에 따라 책정됩니다. 자세한 내용은 문의해 주세요.</p>
       <a href="#contact" class="btn btn-primary" data-magnetic>견적 문의 <span class="arr">→</span></a>
     </div>
-  </div>
-</section>
-
-<!-- ===================== 후기 ===================== -->
-<!-- TODO: 실제 후기로 교체 -->
-<section class="section reviews" id="reviews">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div>
-        <div class="eyebrow"><span class="tc">00:53:30:04</span> — REVIEWS</div>
-        <h2 class="section-title">고객 후기<span class="en">CLIENT NOTES</span></h2>
-      </div>
-    </div>
-    <div class="rev-grid reveal" id="revGrid"></div>
   </div>
 </section>
 
@@ -1013,9 +1031,9 @@ const SERVICES = [
 ];
 
 const PACKAGES = [
-  { name:'하이라이트', cam:'단일 카메라', desc:'경기·행사의 핵심을 빠르게 정리.', items:['하이라이트 영상 1편','세로형 숏폼 1편','1주 이내 전달'], price:'시작가 문의' },
-  { name:'멀티캠', cam:'멀티캠 + 짐벌', desc:'여러 앵글로 안정적인 커버리지.', feat:true, items:['풀 영상 + 하이라이트','세로형 숏폼 2편','색보정 포함','원본 제공'], price:'문의' },
-  { name:'시네마틱', cam:'짐벌 · 드론', desc:'광고 수준의 연출과 색감.', items:['시네마틱 필름 + 풀버전','세로형 숏폼 3편','드론·항공 컷','색보정 + 원본'], price:'문의' },
+  { name:'하이라이트', badge:'가성비', cam:'단일 카메라', desc:'경기·행사의 핵심을 빠르게 정리.', items:['하이라이트 영상 1편','세로형 숏폼 1편','1주 이내 전달'], price:'시작가 문의' },
+  { name:'멀티캠', badge:'인기', feat:true, cam:'멀티캠 + 짐벌', desc:'여러 앵글로 안정적인 커버리지.', items:['풀 영상 + 하이라이트','세로형 숏폼 2편','색보정 포함','원본 제공'], price:'문의' },
+  { name:'시네마틱', badge:'고급', cam:'짐벌 · 드론', desc:'광고 수준의 연출과 색감.', items:['시네마틱 필름 + 풀버전','세로형 숏폼 3편','드론·항공 컷','색보정 + 원본'], price:'문의' },
 ];
 
 const STEPS = [
@@ -1111,7 +1129,7 @@ const pkgEl = document.getElementById('pkgGrid');
 PACKAGES.forEach(p => {
   const d = document.createElement('div');
   d.className = 'pkg' + (p.feat ? ' feat' : '');
-  d.innerHTML = `${p.feat ? '<span class="badge">인기</span>' : ''}<div class="pname">${p.name}</div><div class="cam">${p.cam}</div><div class="pdesc">${p.desc}</div><ul>${p.items.map(i => `<li>${i}</li>`).join('')}</ul><div class="price"><b>${p.price}</b></div>`;
+  d.innerHTML = `${p.badge ? `<span class="badge${p.feat ? '' : ' badge-alt'}">${p.badge}</span>` : ''}<div class="pname">${p.name}</div><div class="cam">${p.cam}</div><div class="pdesc">${p.desc}</div><ul>${p.items.map(i => `<li>${i}</li>`).join('')}</ul><div class="price"><b>${p.price}</b></div>`;
   pkgEl.appendChild(d);
 });
 
@@ -1119,9 +1137,9 @@ const stepsEl = document.getElementById('steps');
 STEPS.forEach(s => { const d = document.createElement('div'); d.className = 'step'; d.innerHTML = `<div class="k">${s.k}</div><h5>${s.h}</h5><p>${s.d}</p>`; stepsEl.appendChild(d); });
 
 const rigEl = document.getElementById('rigList');
-CAPS.forEach(g => { const d = document.createElement('div'); d.className = 'rig-item'; d.innerHTML = `<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 10 6-3v10l-6-3"/></svg><span>${g.n}<small>${g.s}</small></span>`; rigEl.appendChild(d); });
+CAPS.forEach(g => { const d = document.createElement('div'); d.className = 'rig-item'; d.innerHTML = `<span>${g.n}<small>${g.s}</small></span>`; rigEl.appendChild(d); });
 const formatsEl = document.getElementById('formats');
-if(formatsEl){ const lab=document.createElement('span'); lab.className='flabel'; lab.textContent='FORMATS'; formatsEl.appendChild(lab); FORMATS.forEach((f,i) => { const s=document.createElement('span'); s.className='format'+(i===0?' feat':''); s.textContent=f; formatsEl.appendChild(s); }); }
+if(formatsEl){ FORMATS.forEach(f => { const d=document.createElement('div'); d.className='rig-item'; d.innerHTML=`<span>${f}</span>`; formatsEl.appendChild(d); }); }
 
 const revEl = document.getElementById('revGrid');
 REVIEWS.forEach(r => { const d = document.createElement('div'); d.className = 'rev'; d.innerHTML = `<div class="stars">★★★★★</div><p>“${r.q}”</p><div class="who">— ${r.who}</div>`; revEl.appendChild(d); });
@@ -1387,7 +1405,7 @@ if(navDD){
 
 // FAQ (접이식) + FAQPage 구조화데이터
 const FAQ = [
-  { q:'촬영 비용은 어떻게 책정되나요?', a:'촬영 규모(인원·카메라 대수)와 분량, 편집 범위에 따라 달라집니다. 패키지를 기준으로 현장에 맞춰 견적을 드립니다. 현금가 기준이며 카드 결제 시 VAT가 별도로 붙습니다.' },
+  { q:'촬영 비용은 어떻게 책정되나요?', a:'촬영 규모(인원·카메라 대수)와 분량, 편집 범위에 따라 달라집니다. 패키지를 기준으로 현장에 맞춰 견적을 드립니다. 모든 금액은 VAT 포함가로 안내드립니다.' },
   { q:'촬영 가능한 지역은 어디인가요?', a:'수도권을 거점으로 전국 어디든 출장 촬영합니다. 원거리는 교통·숙박 등 출장비가 별도로 협의됩니다.' },
   { q:'납품까지 얼마나 걸리나요?', a:'하이라이트는 보통 1주 이내, 빠르게는 촬영 후 48시간 안에 우선 컷 전달도 가능합니다. 풀편집·시네마틱은 분량에 따라 일정을 조정합니다.' },
   { q:'수정은 몇 번까지 되나요?', a:'기본 1회 수정이 포함됩니다. 추가 수정은 범위에 따라 협의합니다.' },
