@@ -603,7 +603,8 @@ input,textarea{ cursor:text; }
 .cats-band.in-hero .cat-word{ font-size:clamp(15px,2vw,24px); }
 
 /* 대표 영상: 클릭 시 그 자리에서 유튜브 재생(새 창 X) */
-.feat-yt{ position:absolute; inset:0; width:100%; height:100%; border:0; display:block; z-index:4; border-radius:inherit; }
+.feat-yt{ position:absolute; inset:0; z-index:4; border-radius:inherit; overflow:hidden; background:#000; }
+.feat-yt iframe, #featPlayer{ width:100%; height:100%; border:0; display:block; }
 .feat-media.playing{ cursor:default; }
 .feat-media.playing .feat-poster,
 .feat-media.playing .hud,
@@ -653,7 +654,7 @@ input,textarea{ cursor:text; }
   <div class="rec-frame" aria-hidden="true">
     <span class="br tl"></span><span class="br tr"></span><span class="br bl"></span><span class="br br2"></span>
     <div class="rec-hud h-tl"><span class="rdot"></span>REC&nbsp;&nbsp;<span class="rec-time" id="recTc">00:00:00</span></div>
-    <div class="rec-hud h-tr">4K · 24FPS · S-LOG</div>
+    <div class="rec-hud h-tr">24FPS · S-LOG</div>
     <div class="rec-hud h-bl">ISO 800 · 1/50 · ƒ1.4 · WB 5600K</div>
     <div class="rec-hud h-scroll">SCROLL ↓</div>
     <div class="rec-hud h-br">REEL 01&nbsp;<span class="batt"></span></div>
@@ -665,7 +666,7 @@ input,textarea{ cursor:text; }
       <div class="hero-textblock">
         <div class="hero-eyebrow eyebrow"><span class="dot"></span> 스포츠 영상·사진 프로덕션 · SINCE 2026</div>
         <h1 aria-label="Professional Production"><span class="pro" aria-hidden="true">Pro</span><span class="stack" aria-hidden="true"><span class="l1">fessional</span><span class="l2">duction</span></span></h1>
-        <p class="sub">스포츠 현장의 속도부터 브랜드·행사·인물·제품까지, 한 번의 촬영에 담는다.</p>
+        <p class="sub">말이 필요없다. 프로다운 결과물은 프로가 만든다.</p>
       </div>
       <div class="cta-row">
         <a href="#work" class="btn btn-primary" data-magnetic>포트폴리오 보기 <span class="arr">→</span></a>
@@ -681,12 +682,12 @@ input,textarea{ cursor:text; }
         <div class="wrap">
           <div class="feat-media" id="featMedia" data-youtube="7spvj099VAw" data-start="6" role="button" tabindex="0" aria-label="대표 영상 재생">
             <div class="feat-poster"></div>
-            <div class="hud"><span>● SHOWREEL</span><span>작가 2인 · 4K</span></div>
+            <div class="hud"><span>● SHOWREEL</span></div>
             <div class="play" aria-hidden="true"></div>
           </div>
           <div class="feat-info reveal">
             <h3>기록이 아닌, 이야기를 담다.</h3>
-            <p>장르를 가리지 않고, 매 순간에 어울리는 분위기를 고화질로 담아냅니다. 두 작가가 각자의 시선으로 완성한 영상을 한 편에 모았습니다.</p>
+            <p>장르를 가리지 않고, 매 순간에 어울리는 분위기를 고화질로 담아냅니다.</p>
           </div>
         </div>
       </section>
@@ -1150,31 +1151,54 @@ if('IntersectionObserver' in window && window.matchMedia('(hover: none)').matche
   document.querySelectorAll('.work-card').forEach(c => io.observe(c));
 }
 
-// 대표 영상: 클릭 시 새 창 없이 그 자리에서 유튜브 재생
-// data-youtube 에 "영상ID" 또는 전체 URL 둘 다 OK. 시작시간은 data-start 또는 URL의 t= 사용
+// 대표 영상: 접속 시 자동재생(브라우저 정책상 음소거로 시작) → 첫 상호작용에 음량 65로 소리 켜짐
+// data-youtube = 영상ID 또는 전체 URL, data-start = 시작초(또는 URL의 t=)
 const featMedia = document.getElementById('featMedia');
-function playFeatured(){
-  if(!featMedia) return;
+let featPlayer = null, featUnmuted = false;
+function featVideoInfo(){
+  if(!featMedia) return null;
   const raw = (featMedia.dataset.youtube || '').trim();
-  if(!raw){ console.info('[featured] 유튜브 미연결 — #featMedia data-youtube 에 영상ID/URL을 넣으세요.'); return; }
+  if(!raw) return null;
   const m = raw.match(/(?:youtu\.be\/|[?&]v=|\/embed\/)([\w-]{11})/);
   const id = m ? m[1] : raw;
   let start = parseInt(featMedia.dataset.start || '', 10);
   if(isNaN(start)){ const t = raw.match(/[?&]t=(\d+)/); start = t ? parseInt(t[1],10) : 0; }
-  if(featMedia.classList.contains('playing')) return;
-  const f = document.createElement('iframe');
-  f.className = 'feat-yt';
-  f.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&playsinline=1${start?`&start=${start}`:''}`;
-  f.title = '대표 영상'; f.loading = 'lazy'; f.allowFullscreen = true;
-  f.setAttribute('frameborder','0');
-  f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
-  featMedia.appendChild(f);
-  featMedia.classList.add('playing');
-  featMedia.setAttribute('aria-label','대표 영상 재생 중');
+  return { id, start };
 }
-if(featMedia){
-  featMedia.addEventListener('click', playFeatured);
-  featMedia.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); playFeatured(); } });
+function unmuteFeatured(){
+  if(featUnmuted || !featPlayer || !featPlayer.unMute) return;
+  featUnmuted = true;
+  try { featPlayer.setVolume(65); featPlayer.unMute(); } catch(e){}
+  ['pointerdown','keydown','scroll','touchstart','wheel'].forEach(ev => window.removeEventListener(ev, unmuteFeatured));
+}
+function buildFeatPlayer(){
+  const info = featVideoInfo();
+  if(!info || !featMedia || featMedia.classList.contains('playing')) return;
+  const holder = document.createElement('div');
+  holder.className = 'feat-yt';
+  holder.innerHTML = '<div id="featPlayer"></div>';
+  featMedia.appendChild(holder);
+  featMedia.classList.add('playing');
+  featMedia.setAttribute('aria-label','대표 영상');
+  featPlayer = new YT.Player('featPlayer', {
+    width:'100%', height:'100%', videoId: info.id,
+    host: 'https://www.youtube-nocookie.com',
+    playerVars: { autoplay:1, mute:1, start:info.start, rel:0, modestbranding:1, playsinline:1, controls:1 },
+    events: { onReady: (e) => { try { e.target.setVolume(65); e.target.playVideo(); } catch(_){} } }
+  });
+}
+if(featMedia && featVideoInfo()){
+  ['pointerdown','keydown','scroll','touchstart','wheel'].forEach(ev =>
+    window.addEventListener(ev, unmuteFeatured, { passive:true }));
+  if(window.YT && window.YT.Player){ buildFeatPlayer(); }
+  else {
+    const _prev = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = function(){ if(typeof _prev==='function'){ try{_prev();}catch(_){} } buildFeatPlayer(); };
+    if(!document.querySelector('script[src*="iframe_api"]')){
+      const tag = document.createElement('script'); tag.src = 'https://www.youtube.com/iframe_api';
+      document.head.appendChild(tag);
+    }
+  }
 }
 
 const lb = document.getElementById('lightbox');
